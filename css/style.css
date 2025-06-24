@@ -1,0 +1,1750 @@
+@CHARSET "UTF-8";
+:root{
+    /* --inq_bg_color:#dfdfe9; */
+    --inq_bg_color:transparent
+    
+}
+html{
+    height:100% !important;
+}
+
+
+
+@font-face {
+    font-family: "BNazanin";
+    src: url("../webfonts/customFonts/BNazanin.eot");
+    /* IE9 Compat Modes */
+    src: url("../webfonts/customFonts/BNazanin.eot?#iefix") format("embedded-opentype"),
+        /* IE6-IE8 */
+        url("../webfonts/customFonts/BNazanin.otf") format("opentype"),
+        /* Open Type Font */
+        url("../webfonts/customFonts/BNazanin.svg") format("svg"),
+        /* Legacy iOS */
+        url("../webfonts/customFonts/BNazanin.ttf") format("truetype"),
+        /* Safari, Android, iOS */
+        url("../webfonts/customFonts/BNazanin.woff") format("woff"),
+        /* Modern Browsers */
+        url("../webfonts/customFonts/BNazanin.woff2") format("woff2");
+    /* Modern Browsers */
+    font-weight: normal;
+    font-style: normal;
+}
+
+table thead{
+    background-color: #1b0e4b; 
+   
+   
+}
+#PurchaseInquiry{
+    background-color: #fff;
+}
+#PurchaseInquiry .nav-item .nav-link {
+    font-family: IranSans;
+    font-size: 1rem !important;
+    padding-inline-end: 10px;
+     color: #000 !important; */
+}
+#SMSPanelInfo{
+    background-color: #fff;
+}
+.signature_class{
+   /* position: absolute; */
+   
+}
+.table thead th , .table thead th, table thead th{
+    color: #fff !important;
+   
+}
+.mds-bootstrap-persian-datetime-picker-popover {
+    background-color: #fff !important;
+}
+.mds-bootstrap-persian-datetime-picker-popover table thead th {
+    background-color: #fff !important;
+}
+
+.event_form_body{
+    border: 1px solid #f7f2f2;padding: 10px;border-radius: 10px;box-shadow: 3px 3px 3px gray;
+}
+#MainPayCommentsReport{
+    background-color: #fff;
+    min-height: 70vh;
+   
+}
+#MainPayCommentsReport table tr >*{
+    font-family: IranSans;
+    font-size: 11px;
+}
+[id^=pay_comment_status_form] fieldset{
+    padding:0px !important;
+    border:2px solid rgb(230, 233, 229) !important;
+    border-radius: 5px !important;
+}
+[id^=pay_comment_status_form] fieldset legend{
+   font-family: IranSans !important;
+   color:#0c0c0c6b !important;
+   font-size: 0.8rem !important;
+}
+[id^=pay_comment_status_form] input{
+    border:none !important
+}
+.btn_report{
+    font-size:0.7rem;
+    font-family:IranSans;
+ 
+}
+.has-error{
+    border: 1px solid red !important;
+    box-shadow: 3px 3px 3px red;
+}
+.btn-report-box{
+    display: flex;
+    justify-content: space-between;
+    gap:1rem;
+}
+
+.CommentReport{
+    background-color: #08080800;
+}
+
+[id^=pay_comment_status_form] input:focus{
+   
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+[id^=pay_comment_status_form] .bootstrap-select{
+    width: 100% !important;
+}
+[id^=pay_comment_status_form] .bootstrap-select button {
+    border: none;
+    background: transparent;
+    padding: 7px;
+}
+
+@font-face {
+    font-family: "vazir-bold";
+    src: url("../webfonts/customFonts/Vazir-Bold.eot");
+    /* IE9 Compat Modes */
+    src: url("../webfonts/customFonts/Vazir-Bold.eot?#iefix") format("embedded-opentype"),
+        /* IE6-IE8 */
+        url("../webfonts/customFonts/Vazir-Bold.ttf") format("truetype"),
+        /* Safari, Android, iOS */
+        url("../webfonts/customFonts/Vazir-Bold.woff") format("woff"),
+        /* Modern Browsers */
+        url("../webfonts/customFonts/Vazir-Bold.woff2") format("woff2");
+    /* Modern Browsers */
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'dubai-bold';
+    /*تعریف یک نام برای فونت*/
+    src: url('../webfonts/customFonts/DubaiW23-Bold.eot');
+    /*اکسپلورر 9 به بعد*/
+    src: local('DubaiW23-Bold'),
+        /*بررسی نصب بودن فونت در سیستم کاربر*/
+        local('DubaiW23-Bold'),
+        /*برای برخی از مرورگرها مانند سافاری*/
+        url('../webfonts/customFonts/DubaiW23-Bold.eot?#iefix') format('embedded-opentype'),
+        /*هک برای اکسپلورر 8 و ماقبل*/
+        url('../webfonts/customFonts/DubaiW23-Bold.woff') format('woff'),
+        /*مرورگر های جدید*/
+        url('../webfonts/customFonts/DubaiW23-Bold.ttf') format('truetype'),
+        /*تمام مرورگرها به جزء اکسپلورر*/
+        url('../webfonts/customFonts/DubaiW23-Bold.svg#DubaiW23-Bold') format('svg');
+    /*نسخه های قدیمی سیستم عامل iOS*/
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'dubai-Regular';
+    /*تعریف یک نام برای فونت*/
+    src: url('../webfonts/customFonts/DubaiW23-Regular.eot');
+    /*اکسپلورر 9 به بعد*/
+    src: local('DubaiW23-Regular'),
+        /*بررسی نصب بودن فونت در سیستم کاربر*/
+        local('DubaiW23-Regular'),
+        /*برای برخی از مرورگرها مانند سافاری*/
+        url('../webfonts/customFonts/DubaiW23-Regular.eot?#iefix') format('embedded-opentype'),
+        /*هک برای اکسپلورر 8 و ماقبل*/
+        url('../webfonts/customFonts/DubaiW23-Regular.woff') format('woff'),
+        /*مرورگر های جدید*/
+        url('../webfonts/customFonts/DubaiW23-Regular.ttf') format('truetype')
+        /*تمام مرورگرها به جزء اکسپلورر*/
+        /*url('../webfonts/customFonts/DubaiW23-Regular.svg#DubaiW23-Regular') format('svg')*/
+    ;
+    /*نسخه های قدیمی سیستم عامل iOS*/
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'BLotus';
+    /*تعریف یک نام برای فونت*/
+    src: url('../webfonts/customFonts/BLotusBd.eot');
+    /*اکسپلورر 9 به بعد*/
+    src: local('BLotus'),
+        /*بررسی نصب بودن فونت در سیستم کاربر*/
+        local('BLotusBd'),
+        /*برای برخی از مرورگرها مانند سافاری*/
+        url('../webfonts/customFonts/BLotusBd.eot?#iefix') format('embedded-opentype'),
+        /*هک برای اکسپلورر 8 و ماقبل*/
+        url('../webfonts/customFonts/BLotusBd.woff') format('woff'),
+        /*مرورگر های جدید*/
+        url('../webfonts/customFonts/BLotusBd.ttf') format('truetype')
+        /*تمام مرورگرها به جزء اکسپلورر*/
+        /*url('../webfonts/customFonts/DubaiW23-Regular.svg#DubaiW23-Regular') format('svg')*/
+    ;
+    /*نسخه های قدیمی سیستم عامل iOS*/
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'BTitr';
+    /*تعریف یک نام برای فونت*/
+    src: url('../webfonts/customFonts/BTitrBd.eot');
+    /*اکسپلورر 9 به بعد*/
+    src: local('BTitr'),
+        /*بررسی نصب بودن فونت در سیستم کاربر*/
+        local('BLotusBd'),
+        /*برای برخی از مرورگرها مانند سافاری*/
+        url('../webfonts/customFonts/BTitrBd.eot?#iefix') format('embedded-opentype'),
+        /*هک برای اکسپلورر 8 و ماقبل*/
+        url('../webfonts/customFonts/BTitrBd.woff') format('woff'),
+        /*مرورگر های جدید*/
+        url('../webfonts/customFonts/BTitrBd.ttf') format('truetype')
+        /*تمام مرورگرها به جزء اکسپلورر*/
+        /*url('../webfonts/customFonts/DubaiW23-Regular.svg#DubaiW23-Regular') format('svg')*/
+    ;
+    /*نسخه های قدیمی سیستم عامل iOS*/
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'IranSans';
+    /*تعریف یک نام برای فونت*/
+    src: url('../webfonts/customFonts/IranSans.eot');
+    /*اکسپلورر 9 به بعد*/
+    src: local('BTitr'),
+        /*بررسی نصب بودن فونت در سیستم کاربر*/
+        local('BLotusBd'),
+        /*برای برخی از مرورگرها مانند سافاری*/
+        url('../webfonts/customFonts/IranSans.eot?#iefix') format('embedded-opentype'),
+        /*هک برای اکسپلورر 8 و ماقبل*/
+        url('../webfonts/customFonts/IranSans.woff') format('woff'),
+        /*مرورگر های جدید*/
+        url('../webfonts/customFonts/IranSans.ttf') format('truetype')
+        /*تمام مرورگرها به جزء اکسپلورر*/
+        /*url('../webfonts/customFonts/DubaiW23-Regular.svg#DubaiW23-Regular') format('svg')*/
+    ;
+    /*نسخه های قدیمی سیستم عامل iOS*/
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Vazir';
+    /*تعریف یک نام برای فونت*/
+    src: url('../webfonts/customFonts/Vazir.ttf');
+    /*اکسپلورر 9 به بعد*/
+    src: local('BTitr'),
+        /*بررسی نصب بودن فونت در سیستم کاربر*/
+        local('BLotusBd'),
+        /*برای برخی از مرورگرها مانند سافاری*/
+        url('../webfonts/customFonts/IranSans.eot?#iefix') format('embedded-opentype'),
+        /*هک برای اکسپلورر 8 و ماقبل*/
+        url('../webfonts/customFonts/IranSans.woff') format('woff'),
+        /*مرورگر های جدید*/
+        url('../webfonts/customFonts/IranSans.ttf') format('truetype')
+        /*تمام مرورگرها به جزء اکسپلورر*/
+        /*url('../webfonts/customFonts/DubaiW23-Regular.svg#DubaiW23-Regular') format('svg')*/
+    ;
+    /*نسخه های قدیمی سیستم عامل iOS*/
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Vazir_thin';
+    /*تعریف یک نام برای فونت*/
+    font-size: 0.7rem;
+    src: url('../webfonts/customFonts/Vazir.ttf');
+    /*اکسپلورر 9 به بعد*/
+    src: local('BTitr'),
+        /*بررسی نصب بودن فونت در سیستم کاربر*/
+        local('BLotusBd'),
+        /*برای برخی از مرورگرها مانند سافاری*/
+        url('../webfonts/customFonts/IranSans.eot?#iefix') format('embedded-opentype'),
+        /*هک برای اکسپلورر 8 و ماقبل*/
+        url('../webfonts/customFonts/IranSans.woff') format('woff'),
+        /*مرورگر های جدید*/
+        url('../webfonts/customFonts/IranSans.ttf') format('truetype')
+        /*تمام مرورگرها به جزء اکسپلورر*/
+        /*url('../webfonts/customFonts/DubaiW23-Regular.svg#DubaiW23-Regular') format('svg')*/
+    ;
+    /*نسخه های قدیمی سیستم عامل iOS*/
+    font-style: normal;
+    font-weight: normal;
+}
+
+.bg_danger_custom{background-color: #d6d8db !important}
+.bg_temp_custom{background-color: #e7aab7 !important}
+.bg_warning_custom{background-color: #ffa5004a !important}
+.bg_success_custom{background-color: #28a74557 !important}
+
+.selected_row td{
+    background-color: rgb(152, 235, 152);
+    font-family: IranSans !important;
+    font-size: 13px !important;
+    color:#103fce;
+    transition: all 0.5s;
+   
+}
+.page-item:hover{
+    cursor: pointer;
+}
+.inq_drop_down_content{
+    position: absolute;
+    width: 220px !important;
+    background: #fff;
+    display:none;
+    z-index:10000;
+    box-shadow:3px 3px 3px gray;
+}
+#add_new_good_link,#add_new_seller_link{
+    font-family: IranSans !important;
+    font-size:12px !important;
+    margin-top: 10px !important;
+    padding: 10px;
+    text-decoration: none !important;
+    color:red;
+}
+
+.inq_drop_down:hover .inq_drop_down_content{
+    display:block;
+    height: auto;
+    padding: 10px;
+}
+.inq_drop_down{
+    position:relative;
+    height: auto;
+    
+}
+
+section.recivedCustomer{
+    min-height:70vh;
+}
+
+.p_title_count {
+    color: gray;
+    padding: 5px;
+    text-shadow: 3px 3px 3px #dbc6c6;
+    font-family: 'IranSans';
+}
+
+.inq_detaile_td{
+    position: relative
+}
+
+.more_seller_data {
+    position: absolute;
+    bottom: 0;
+    right: 25%;
+    left: 25%;
+}
+
+fieldset, legend {
+    all: revert !important;
+ }
+input[type=checkbox]:checked {
+    background-color: #a77e2d !important;
+    color: #ffffff !important;
+  }
+  input[type='checkbox']:after {
+      box-shadow: none !important;
+  }
+  
+.forget_user_pass{
+    font-family: IranSans;
+    font-size: 14px;
+    color:green;
+   
+}
+.bg-primary-custom{
+    background-color: #5088918f !important;
+}
+.custom-title-class{
+    font-size: 1rem;
+    font-family: IranSans;
+}
+
+.loader_ajax {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+.inq_inner_table tr,.inq_inner_table td{
+  
+    padding:5px 0 5px 0 !important;
+    background-color: transparent !important;
+    border:2px solid #f1eeeecc !important;
+    font-size:12px !important
+
+}
+.inq_btn_box{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    padding: 10px 0;
+}
+.inq_paraf_table td{
+    font-size:10px;
+    font-family: IranSans;
+}
+.cursor-pointer{
+    cursor: pointer;
+}
+.inq_footer{
+    display: flex;
+    justify-content: center;
+
+}
+.paraf_box{
+    border:1px solid gray;
+    
+}
+.paraf_box p{
+    width: 100%;
+    font-family: IranSans !important;
+    font-size: 10px !important;
+    padding: 0 5px;
+}
+#inq_paraf_form{
+    border-radius:10px;
+    margin:5px auto;
+    background-color: rgba(128, 128, 128, 0.247);
+    padding: 10px;
+}
+.inq_paraf_btn_box{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.inq_paraf_content{
+    width:50%;
+    margin: 0 auto;
+   
+}
+.inq_send_body{
+    width: 50%;
+    margin:0 auto;
+}
+
+.inq_inner_table{
+    width: 100%;
+    text-align: center;
+}
+.nav-item .nav-link{
+    font-family:IranSans;
+    font-size:1rem !important;
+    padding-inline-end: 10px;
+    color:#e7e6ee !important;
+
+}
+.nav-tabs .nav-link.active{
+    color:#000 !important
+}
+.nav-item .nav-link:hover{
+  
+    color:rgb(221, 163, 76) !important;
+    padding-inline-end: 1rem !important;
+    border-block-end: 1px solid rgb(221, 163, 76) !important;
+}
+#ManagePartnersCartable_table_wrapper  {
+    padding: 10px;
+    border: 2px solid gray;
+    margin-block-start: 10px;
+    border-radius: 5px;
+    
+}
+.detailes_box{
+    display: flex;
+    justify-content: space-around;
+    
+    flex-direction: column;
+}
+.grid-form{
+    display:grid;
+   /* grid-template-columns: 25% 25% 25% ;*/
+    column-gap: 10%;
+    row-gap:10px;
+   /* grid-template-columns: repeat(3, 1fr);*/
+    grid-template-columns:repeat(auto-fit, minmax(20%, 1fr));
+}
+
+.hasAccess{
+    background-color: rgb(42, 112, 42);
+    color:#fff !important;
+    padding:5px;
+    box-shadow: 3px 3px 3px gray;
+    width: 100%;
+}
+.hasAccess input[type="checkbox"]{
+    height: 100%;
+}
+.buttons_div{
+        grid-column: 1/4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+}
+.inq_count{
+        position: absolute;
+        background: red;
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        text-align: center;
+        line-height: 20px;
+        color: #fff;
+        left: 0;
+        top: 0;
+        font-size: 12px;
+}
+.grid-form  input{
+  border-bottom:1px solid gray;
+}
+
+.fs{
+    
+    border: 2px solid gray;
+    border-radius: 10px;
+}
+.fs legend{
+    padding:10px;
+    font-size: 1rem;
+    width: auto;
+}
+.grid-form_first{
+    display:grid;
+   /* grid-template-columns: 25% 25% 25% ;*/
+    column-gap: 10%;
+    row-gap:10px;
+   /* grid-template-columns: repeat(3, 1fr);*/
+    grid-template-columns:repeat(auto-fit, minmax(20%, 1fr));
+}
+.grid-form_second{
+    display:grid;
+    column-gap: 1rem;
+    row-gap:10px;
+    grid-template-columns:repeat(auto-fit, minmax(45%, 1fr));
+}
+#add_good_btn{
+    font-size: 1rem;
+    font-weight: 700;
+}
+.form_create_inq_box{
+    padding-block-start:10px;
+}
+.inq_list_header_search {
+    padding: 10px;
+    border: 1px solid gray;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.seller_description{
+    display: flex;
+    flex-wrap: wrap;
+    gap:10px;
+   justify-content: center;
+    align-items: center;
+	width:100%;
+}
+.seller_description table{
+    flex:1 0 100%;
+   
+}
+.seller_description table td{
+   
+}
+.inq_comment_row_select{
+    box-shadow: 4px 1px 10px #000;
+    border: 1px solid green;
+    background: #2e7bef !important;
+    color: #fff;
+
+}
+
+.inq_tab{
+    outline: none !important;
+}
+.custom-conf-class{
+    color:#fff;
+    background-color: #6ea08e;
+}
+.custom-cancel-class{
+    color:#fff;
+    background-color: #eb571d;
+}
+.seller_description .box_table {
+    width: 100%;
+    background: #fff;
+    box-shadow: 2px 4px 4px gray;
+}
+.seller_description table tr td textarea{
+    width: 100%;
+    border-radius: 5px;
+}
+.form-seller {
+   margin-block-end: 10px;
+   background-color: #f4f6f9;
+}
+.form-seller .row .dropdown{
+    width: 100% !important;
+}
+.form-seller .row .dropdown button{
+    border:none;
+}
+ 
+.grid-form .row input{
+    width: 100% !important
+}
+.grid-form .row input:focus{
+    border:none !important;
+}
+.inqury_btn{
+    width: auto;
+    box-shadow: 1px 1px 1px gray;
+    transition: 1s;
+}
+#PurchaseInquiry {
+    width: 100%;
+    height: 80vh;
+    margin: 0;
+    /* border-radius: 10px;
+    border: 2px solid #d1d1e1;
+    padding-block: 1rem;
+    background-color: var(--inq_bg_color);*/
+} 
+#confirm_next_step{
+    margin-inline: 3rem;
+
+}
+.inq_circle{
+   width:40px;
+   height: 40px;
+   background-color: #e5e3e3;
+   color:#fff;
+   border-radius: 50%; 
+   
+}
+.inq_line{
+    width:60px;
+    height: 1px;
+   background-color:#e5e3e3 ;
+  
+}
+.inq_form_steps{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+#create_new_inq_btn:hover{
+    transform: scale(1.05);
+    transition: 1s;
+    box-shadow: 3px 3px 3px #000;
+
+}
+.form-seller input[type=number],.form-seller input[type=text]{
+    background: #f4f6f9;
+}
+.form-seller div.row{
+    padding-block: 5px;;
+}
+.input_label {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    background: #f4f6f9;
+    padding-inline: 5px;
+    transition: 2s;
+    color:gray;
+    margin-right: 5px;
+    
+}
+
+.form_custom_bg{
+    background: #f4f6f9;
+}
+
+.form-group-custom{
+    all: revert !important;
+    position:relative;
+    margin-bottom:1.2rem !important;
+    border:1px solid rgb(172, 182, 172) !important;
+    border-radius:10px !important;
+    padding:0 !important;
+    height: auto;
+
+}
+
+.custom_modal{
+    background:rgba(128, 128, 128, 0.5);
+}
+.form-group-custom legend{
+   
+    background-color: inherit !important;
+    color:#14082b8c !important;
+    max-width: 50% !important;
+    width: auto !important;
+    font-size: 12px !important;
+    margin-right: 1.5rem !important;
+    
+}
+.form-group-custom > :is(input, textarea) {
+
+    background-color: inherit;
+    height: 2rem;
+    border:1px solid transparent !important;
+    width: 100%;
+    outline: 0px !important;
+    text-align: center;
+}
+.form-group-custom select {
+
+    background-color: inherit;
+    height: 2rem;
+    border : none !important;
+    width: 100%;
+    outline:none !important;
+    text-align: center;
+}
+
+.custom_fieldset{
+
+    background-color: inherit;
+    height: 3rem;
+    border:1px solid rgb(133, 71, 71);
+    width: 100%;
+}
+.custom_fieldset legend{
+
+    font-size: 1rem !important;
+    width: auto !important;
+}
+
+.form-group-custom > :is(input,select,textarea):focus{
+
+    outline: 0 !important;
+    outline-width: 0 !important;
+    outline-color: transparent !important;
+    outline-offset:0 !important;
+   
+}
+.form-group-custom button.dropdown-toggle,.form-group-custom .bootstrap-select{
+    width: 100% !important;
+    border:none;
+    background: transparent;
+}
+.form-group-custom button.dropdown-toggle:focus{
+    width: 100% !important;
+    border:none;
+    background: transparent;
+    height: 3rem !important;
+}
+.paginate_input {
+    width: 50px;
+    text-align: center;
+    margin-inline: 10px;
+    border:none;
+}
+.pagination {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding-block: 10px;
+    background-color: #f8f8fd;
+}
+.tab-item{
+    background: transparent  !important;
+    font-size: 12px !important;
+    color:#252323 !important;
+}
+
+.active-tab{
+    border:1px solid #fff  !important;
+   
+    position: relative  !important;
+    top:1px  !important;
+    background-color: #fff !important;
+}
+.custom_navbar{
+    border-block-end: 1px solid #fff;
+}
+.tab-section{
+    padding: 2rem;
+}
+
+.inq_table{
+    border-radius: 5px;
+    border:2px solid #9e9a9a38; 
+}
+
+.inq_null_row{
+
+    background: #ff00001c !important;
+}
+
+
+.inq_logo{
+    width:300px;
+}
+    
+    /* Display list items side by side */
+    
+    ul.inq_breadcrumb {
+       display: flex;
+    }
+    /* Add a slash symbol (/) before/behind each list item */
+    ul.inq_breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+    }
+    
+    /* Add a color to all links inside the list */
+    ul.inq_breadcrumb li a {
+    color: #0275d8;
+    text-decoration: none;
+    }
+    
+    /* Add a color on mouse-over */
+    ul.inq_breadcrumb li a:hover {
+    color: #01447e;
+    text-decoration: underline;
+    }
+
+    .inq_active{
+    color:green;
+    background-color: #dfdfe9;
+   
+    position: relative;
+    top: 2px;
+    outline: none;
+    border:2px solid #d1d0d8 !important;
+    border-bottom: none !important;
+    border-bottom:none;
+    transition: top 2s;
+    }
+        
+#add_inq{
+    float:left
+}
+#inq_table {
+    overflow-y: auto; 
+    height: 110px; 
+}
+
+#inq_table thead th{
+    text-align: center;
+    border:2px solid gray;
+    color:#fff;
+} 
+
+#inq_table tbody td{
+    border:2px solid gray;
+   
+} 
+
+
+  .return_box{
+    text-align:end ;
+    padding:10px;
+  }
+  .return_btn{
+    cursor: pointer;
+  }
+
+#inq_table tr{
+   
+    /* box-shadow: 3px 3px 3px gray; */
+    /* background-color: #fff !important; */
+}
+
+.inq_not_found{
+    padding: 2rem;
+    color:red;
+    transition: 2s;
+}
+.manage_inq{
+   
+    transition:1s;
+}
+
+.form_create_seller_box form{
+  
+    padding: 2rem;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.custom_row{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+
+}
+.custom_row button{
+    align-self: start;
+}
+.inq_detailes_box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 2px solid gray;
+
+}
+.inq_detailes_parent {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20%;
+    gap: 20px;
+    background-color: #fafbfb;
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    box-shadow: 4px 4px 7px gray;
+}
+
+.swbtn {
+    padding-inline: 91px;
+    margin: 10px;
+}
+
+.form_create_good_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-block: 10px;
+}
+.manage_inq:hover{
+    transform: scale(1.5);
+    cursor: pointer;
+    color:rgb(105, 128, 0);
+}
+.inq_list_header{
+    padding: 2rem;
+    font-family: IranSans;
+}
+.active_step{
+    color:#fff !important;
+    background-color: rgb(7, 179, 7) !important;
+    transition: 2s !important;
+}
+#form_create_export_inq{
+    width: 100%;
+    border: 2px solid rgb(223, 220, 220);
+    margin: 1rem auto;
+    padding: 2rem 3rem 3rem 2rem;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px gray;
+}
+#export_inq_header{
+    font-family: IranSans;
+    background: linear-gradient(to right, blue, rgb(180, 82, 82));
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+
+}
+.manage_message {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+.manage_message a{
+   
+    color: #091921;
+}
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.btn_cliked{
+    background-color: rgb(136, 202, 136);
+    transition: 1s;
+    box-shadow:3px 3px 3px gray;
+}
+.loading_run {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background:rgba(128,128,128,0.6);
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    color:#fff;
+    font-size:2rem;
+    font-family:IranSans;
+}
+
+div {
+    font-size: 15px;
+}
+
+* {
+    font-family: dubai-bold;
+
+    font-size: 14px;
+}
+
+.metro-ui {
+    min-height: 220px;
+    cursor: pointer;
+}
+.metro-ui:hover::after {
+    transform: scale(1.2);
+}
+
+
+strong {
+    font-family: dubai-bold, Tahoma;
+    font-size: 14px;
+    color: red;
+    font-weight: bold;
+}
+
+.typeahead {
+    z-index: 1051;
+    width: 380px;
+}
+
+
+.display_pay_rows {
+    position: absolute;
+    background: #e7f4f9;
+    min-height: 100px;
+    padding: 10px;
+    width: 90%;
+    top: 35px;
+    left: 10px;
+    z-index: 1000;
+    margin-top: 10px;
+    border-radius: 10px;
+    display: none;
+    box-shadow: 2px 2px 3px gray;
+    font-family: IranSans;
+}
+
+.display_pay_rows table {
+    width: 100%;
+}
+
+.hoshdar {
+    font-family: dubai-bold;
+    font-size: 15px;
+    color: crimson;
+    font-weight: bold;
+}
+
+.defyek {
+    font-family: dubai-bold, Tahoma;
+    font-size: 14px;
+    color: black;
+    font-weight: bold;
+}
+
+.alarm-bell {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+
+    margin-top: 23px;
+}
+
+.alarm_nav-link {
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border: 2px solid;
+}
+
+.analog-clock{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('<?php echo ADDR ?>/images/clock.png');
+    background-size: cover;
+    border: 4px solid #091921; 
+    border-radius: 50%; 
+    box-shadow: 0 -15px 15px rgba(255,255,255, 0.05),
+                inset 0 -15px 15px rgba(255,255,255, 0.05), 
+                0 15px 15px rgba(0,0,0, 0.3),
+                inset 0 15px 15px rgba(0,0,0, 0.3);
+    position:absolute;
+    top:3rem;
+    right:3rem;
+
+    
+}
+.analog-clock::before{
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border-radius: 50%;
+    z-index: 20;
+}
+.analog-clock .hour, 
+.analog-clock .minute,
+.analog-clock .second{
+    position: absolute;
+}
+
+.analog-clock .hour,
+#h-arrow{
+    width: 80px;
+    height: 80px;
+}
+.analog-clock .minute,
+#m-arrow{
+    width: 85px;
+    height: 85px;
+}
+.analog-clock .second,
+#s-arrow{
+    width: 95px;
+    height: 95px;
+}
+#h-arrow,
+#m-arrow,
+#s-arrow{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+}
+#h-arrow::before{
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 30px;
+    background: #ff105e;
+    z-index: 10;
+    border-radius: 6px;
+}
+#m-arrow::before{
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 50px;
+    background: #ffd700;
+    z-index: 11;
+    border-radius: 6px;
+}
+#s-arrow::before{
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 60px;
+    background: green;
+    z-index: 11;
+    border-radius: 6px;
+}
+
+#overtimeLunchManagePersonnelSearch-div button{
+    width:130px;
+}
+
+#alarm_count {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    position: absolute;
+    background: red;
+    color: #fff;
+    top: 4px;
+    left: 0px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.ringing {
+    color: blue !important;
+    text-shadow: 4px 6px 10px #fff;
+    -webkit-animation: bell-ring linear 4s infinite;
+    -moz-animation: bell-ring linear 4s infinite;
+    -ms-animation: bell-ring linear 4s infinite;
+    -o-animation: abell-ring linear 4s infinite;
+    animation: bell-ring linear 4s infinite;
+}
+
+.pagination>.active>a,
+.pagination>.active>span,
+.pagination>.active>a:hover,
+.pagination>.active>span:hover,
+.pagination>.active>a:focus,
+.pagination>.active>span:focus {
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #ffc107;
+    border: 1px solid #ffc107;
+}
+
+.modal-form-m {
+    margin: 0 40px;
+}
+
+.headsearch:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ffe9a7;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(250, 193, 7, 0.45) !important;
+}
+
+.shadow-color:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ffe9a7;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(250, 193, 7, 0.45) !important;
+}
+
+.project_name_box {
+    background: linear-gradient(#0000ff82, #ff000082);
+    padding: 10px;
+    margin: 0;
+    color: #222368;
+    display: flex;
+    gap: 10px;
+}
+
+.form-group.required .col-sm-3:after {
+    content: "*";
+    color: red;
+}
+
+.thead tr:nth-child(1) td {
+    background: #6c757d;
+    position: sticky;
+    top: -0.2px;
+    z-index: 10;
+}
+
+.table-bordark {
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+.table-bordark th,
+.table-bordark td {
+    border: 1px solid #000000;
+}
+
+.blink {
+    -webkit-animation: blinker 1.2s infinite;
+    animation: blinker 1.2s infinite;
+}
+
+.blinker {
+    font-size: 2rem;
+    animation: blinker 3s infinite;
+
+}
+
+.bg-danger-light {
+    background-color: #ffbcc2 !important;
+}
+
+.bg-success-light {
+    background-color: #b9ffc9 !important;
+}
+
+.bg-warning-light {
+    background-color: #fff0c5 !important;
+}
+.bg-secondary-light{
+    background-color: #b0bcc7 !important;
+}
+
+#meetingCommentManageInfoModal-title {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: self-end;
+}
+
+#deadlineToStartMeeting {
+    color: yellow;
+    animation: blinker 4s infinite;
+}
+
+#MeetingStartComment {
+    width: 100%;
+    background-color: #6f9978;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 3px 3px 9px gray;
+    color: #fff;
+}
+
+.Prerequisite_count {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: #1b634b;
+    color: rgb(250, 249, 249);
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    border: 1px solid gray;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    padding: 15px 25px;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    color: #fff;
+    background-color: #04AA6D;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 9px #999;
+}
+
+.button:hover {
+    background-color: #3e8e41
+}
+
+.button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+#createMeetingWorkReportModal .modal-header {
+    background-color: #5959d1 !important;
+    font-family: 'Vazir';
+    color: #fff;
+}
+
+#OrganizationalProceduresID {
+ /* display:none !important;*/
+   /* min-height: 100vh;*/
+    margin: 0;
+    display: grid;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+   /* background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);*/
+   /* overflow-y: scroll;*/
+    
+}
+
+#OrganizationalProceduresID button,
+#organizational_procedures_serach .procedures_box button {
+    /* background: #fff;
+    color: #4A5568;*/
+    border: 0px solid #A0AEC0;
+    transition: background .2s ease, color .4s ease, box-shadow .2s ease, transform .2s ease;
+    transform: translateY(0);
+    width: 100%;
+    font-family: IranSans;
+    font-size: 1.2rem;
+    height: 100%;
+    border-radius: 5px;
+    box-shadow: 3px 3px gray;
+    text-shadow: 3px 3px 4px #9595bf;
+    background: linear-gradient(45deg, #e50f0f69, #0f1fe14d);
+    color: #22477e;
+
+}
+
+#OrganizationalProceduresID #departments {
+    padding-top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#OrganizationalProceduresID button i {
+    color: #A0AEC0;
+    margin-right: .3em;
+    transition: all .2s ease-out;
+}
+
+.multi-button:hover button {
+    color: #A0AEC0;
+
+}
+
+#commentManageLayerOneSearch-div button {
+    width: 120px;
+}
+
+#commentManageLayerTwoSearch-div button {
+    width: 120px;
+}
+
+#commentManageLayerThreeSearch-div button {
+    width: 120px;
+}
+
+
+#departments button:hover {
+    background: #D53F8C;
+    color: #fff;
+    box-shadow: 0 0 0.8em 0 rgba(213, 63, 140, .8);
+    transform: translateY(-.2em);
+}
+
+/* #commentManagmentModal .modal-form-m .form-group::after,#commentManagmentModal .modal-form-m .form-group::before{
+    content: '';
+    position: absolute;
+    background-color: red;
+    z-index: 1;
+} */
+#commentManagmentModal .form-group::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100vw - 60px);
+    background-color: red;
+}
+
+#commentManagmentModal .modal-form-m .form-group {
+    padding: 10px 0;
+
+
+}
+
+.multi-button:hover button i {
+    color: #CBD5E0;
+}
+
+.multi-button:hover button:hover i {
+    color: #FED7E2;
+    transform: rotate(-10deg);
+}
+
+#procedures_tbl tr th,
+#procedures_tbl tr td {
+    font-family: IranSans;
+}
+
+.count_procedure_files {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    border-radius: 100%;
+    position: absolute;
+    background: red;
+    justify-content: center;
+    top: -8px;
+    left: -8px;
+    z-index: 100
+}
+.download_msg{
+        position: absolute;
+        background: rgb(255, 255, 255);
+        color: green;
+        font-family: IranSans;
+        font-size: 9px;
+        display: none;
+        width: 100%;
+        z-index: 10;
+        padding: 5px;
+        border-radius: 5px;
+        box-shadow: 3px 3px 3px rgb(168, 166, 166);
+    }
+
+.procedures_box {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+    
+    z-index:10;
+    min-height: 100vh;
+    overflow-y: scroll;
+    width: 100vw;
+}
+
+.selected {
+    border: 2px solid rgb(66, 70, 71);
+    border-bottom: none;
+    background-color: #a4b9eb;
+}
+
+.selected2 {
+    border: 2px solid rgb(66, 70, 71);
+    border-top: none;
+    background-color: #9adee9;
+}
+
+.register_procedure_count {
+
+    color: rgba(128, 128, 128, 0.5);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    font-size: 1.8rem;
+}
+.procedures_header
+{
+    box-shadow: 3px 3px 3px gray;
+   position: static;
+    width: 100%;
+    background: #fff;
+    right: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    z-index:11;
+    top:89px;
+}
+
+ul li{
+    list-style: none !important;
+    font-family:IranSans !important;
+}
+
+ul.inq_navbar {
+
+    display: flex !important;
+}
+
+ul.inq_navbar li:hover a{
+    color:rgb(184, 64, 9) !important;
+    text-decoration: underline !important;
+    font-size: 1.2rem !important;
+    cursor: pointer !important;
+    transition: all 0.5s !important;
+}
+.inq_main_menu{
+    display: flex !important;
+    justify-content: space-between !important;
+    background-color:#eee !important;
+    padding: 10px 5px !important;
+}
+
+-webkit-@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes alarm {
+
+    /* 0% {
+        width: 50px;
+        height: 50px;
+        border-right: 2px solid red;
+        position: relative;
+    }
+
+    25% {
+        width: 60px;
+        height: 60;
+        border-right: 2px solid red;
+        position: relative;
+    }
+
+    50% {
+        width: 75px;
+        height: 75px;
+        border-right: 2px solid red;
+        position: relative;
+    }
+
+    75% {
+        width: 95px;
+        height: 95px;
+        border-right: 2px solid red;
+        position: relative;
+    }
+
+    100% {
+        width: 75px;
+        height: 75px;
+        border-right: 2px solid red;
+        position: relative;
+    }*/
+    0% {
+        transform: translate(-50%, -50%);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.3);
+        opacity: 0;
+    }
+
+}
+
+@keyframes bell-ring {
+
+    0% {
+
+        transform: translate(-50%, -50%);
+
+    }
+
+    5%,
+    15% {
+
+        transform: translate(-50%, -50%) rotate(25deg);
+
+    }
+
+    10%,
+    20% {
+
+        transform: translate(-50%, -50%) rotate(-25deg);
+
+    }
+
+    25% {
+
+        transform: translate(-50%, -50%) rotate(0deg);
+
+    }
+
+    100% {
+
+        transform: translate(-50%, -50%) rotate(0deg);
+
+    }
+}
+
+@keyframes bord-pop {
+
+    0% {
+
+        transform: translate(-50%, -50%);
+
+    }
+
+    50% {
+
+        transform: translate(-50%, -50%) scale(1.9);
+
+        opacity: 0.1;
+
+    }
+
+    100% {
+
+        transform: translate(-50%, -50%) scale(1.9);
+
+        opacity: 0;
+
+    }
+
+}
+
+#wrapper-chart {
+    width: 900px;
+    height: 450px;
+    display: inline-block;
+
+}
+
+@keyframes blinker2 {
+    50% {
+        font-size: 40px;
+    }
+}
+/* @page {
+    size: A4;
+    margin: 0;
+    
+    @bottom-center {
+      content: "Page " counter(page) " of " counter(pages);
+      font-family: Arial, sans-serif;
+      font-size: 10pt;
+    }
+  }
+  
+  @page:first {
+    @bottom-center {
+      content: none;
+    }
+  }
+  
+  /* body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+  } */
+  
+ /* @media print {
+    /* Print-specific styles 
+    h1 { page-break-before: always; }
+    h2, h3 { page-break-after: avoid; }
+    p { page-break-inside: avoid; }
+    .demoFund{
+        font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: red;
+    
+    }
+  } */

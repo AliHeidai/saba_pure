@@ -1,0 +1,255 @@
+@CHARSET "UTF-8";
+
+@font-face {
+    font-family: "BNazanin";
+    src: url("../webfonts/customFonts/BNazanin.eot");
+    /* IE9 Compat Modes */
+    src: url("../webfonts/customFonts/BNazanin.eot?#iefix") format("embedded-opentype"),
+        /* IE6-IE8 */
+        url("../webfonts/customFonts/BNazanin.otf") format("opentype"),
+        /* Open Type Font */
+        url("../webfonts/customFonts/BNazanin.svg") format("svg"),
+        /* Legacy iOS */
+        url("../webfonts/customFonts/BNazanin.ttf") format("truetype"),
+        /* Safari, Android, iOS */
+        url("../webfonts/customFonts/BNazanin.woff") format("woff"),
+        /* Modern Browsers */
+        url("../webfonts/customFonts/BNazanin.woff2") format("woff2");
+    /* Modern Browsers */
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "vazir-bold";
+    src: url("../webfonts/customFonts/Vazir-Bold.eot");
+    /* IE9 Compat Modes */
+    src: url("../webfonts/customFonts/Vazir-Bold.eot?#iefix") format("embedded-opentype"),
+        /* IE6-IE8 */
+        url("../webfonts/customFonts/Vazir-Bold.ttf") format("truetype"),
+        /* Safari, Android, iOS */
+        url("../webfonts/customFonts/Vazir-Bold.woff") format("woff"),
+        /* Modern Browsers */
+        url("../webfonts/customFonts/Vazir-Bold.woff2") format("woff2");
+    /* Modern Browsers */
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'dubai-bold';
+    /*تعریف یک نام برای فونت*/
+    src: url('../webfonts/customFonts/DubaiW23-Bold.eot');
+    /*اکسپلورر 9 به بعد*/
+    src: local('DubaiW23-Bold'),
+        /*بررسی نصب بودن فونت در سیستم کاربر*/
+        local('DubaiW23-Bold'),
+        /*برای برخی از مرورگرها مانند سافاری*/
+        url('../webfonts/customFonts/DubaiW23-Bold.eot?#iefix') format('embedded-opentype'),
+        /*هک برای اکسپلورر 8 و ماقبل*/
+        url('../webfonts/customFonts/DubaiW23-Bold.woff') format('woff'),
+        /*مرورگر های جدید*/
+        url('../webfonts/customFonts/DubaiW23-Bold.ttf') format('truetype'),
+        /*تمام مرورگرها به جزء اکسپلورر*/
+        url('../webfonts/customFonts/DubaiW23-Bold.svg#DubaiW23-Bold') format('svg');
+    /*نسخه های قدیمی سیستم عامل iOS*/
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'dubai-Regular';
+    /*تعریف یک نام برای فونت*/
+    src: url('../webfonts/customFonts/DubaiW23-Regular.eot');
+    /*اکسپلورر 9 به بعد*/
+    src: local('DubaiW23-Regular'),
+        /*بررسی نصب بودن فونت در سیستم کاربر*/
+        local('DubaiW23-Regular'),
+        /*برای برخی از مرورگرها مانند سافاری*/
+        url('../webfonts/customFonts/DubaiW23-Regular.eot?#iefix') format('embedded-opentype'),
+        /*هک برای اکسپلورر 8 و ماقبل*/
+        url('../webfonts/customFonts/DubaiW23-Regular.woff') format('woff'),
+        /*مرورگر های جدید*/
+        url('../webfonts/customFonts/DubaiW23-Regular.ttf') format('truetype')
+        /*تمام مرورگرها به جزء اکسپلورر*/
+        /*url('../webfonts/customFonts/DubaiW23-Regular.svg#DubaiW23-Regular') format('svg')*/
+    ;
+    /*نسخه های قدیمی سیستم عامل iOS*/
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'BLotus';
+    /*تعریف یک نام برای فونت*/
+    src: url('../webfonts/customFonts/BLotusBd.eot');
+    /*اکسپلورر 9 به بعد*/
+    src: local('BLotus'),
+        /*بررسی نصب بودن فونت در سیستم کاربر*/
+        local('BLotusBd'),
+        /*برای برخی از مرورگرها مانند سافاری*/
+        url('../webfonts/customFonts/BLotusBd.eot?#iefix') format('embedded-opentype'),
+        /*هک برای اکسپلورر 8 و ماقبل*/
+        url('../webfonts/customFonts/BLotusBd.woff') format('woff'),
+        /*مرورگر های جدید*/
+        url('../webfonts/customFonts/BLotusBd.ttf') format('truetype')
+        /*تمام مرورگرها به جزء اکسپلورر*/
+        /*url('../webfonts/customFonts/DubaiW23-Regular.svg#DubaiW23-Regular') format('svg')*/
+    ;
+    /*نسخه های قدیمی سیستم عامل iOS*/
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'BTitr';
+    /*تعریف یک نام برای فونت*/
+    src: url('../webfonts/customFonts/BTitrBd.eot');
+    /*اکسپلورر 9 به بعد*/
+    src: local('BTitr'),
+        /*بررسی نصب بودن فونت در سیستم کاربر*/
+        local('BLotusBd'),
+        /*برای برخی از مرورگرها مانند سافاری*/
+        url('../webfonts/customFonts/BTitrBd.eot?#iefix') format('embedded-opentype'),
+        /*هک برای اکسپلورر 8 و ماقبل*/
+        url('../webfonts/customFonts/BTitrBd.woff') format('woff'),
+        /*مرورگر های جدید*/
+        url('../webfonts/customFonts/BTitrBd.ttf') format('truetype')
+        /*تمام مرورگرها به جزء اکسپلورر*/
+        /*url('../webfonts/customFonts/DubaiW23-Regular.svg#DubaiW23-Regular') format('svg')*/
+    ;
+    /*نسخه های قدیمی سیستم عامل iOS*/
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'IranSans';
+    /*تعریف یک نام برای فونت*/
+    src: url('../webfonts/customFonts/IranSans.eot');
+    /*اکسپلورر 9 به بعد*/
+    src: local('BTitr'),
+        /*بررسی نصب بودن فونت در سیستم کاربر*/
+        local('BLotusBd'),
+        /*برای برخی از مرورگرها مانند سافاری*/
+        url('../webfonts/customFonts/IranSans.eot?#iefix') format('embedded-opentype'),
+        /*هک برای اکسپلورر 8 و ماقبل*/
+        url('../webfonts/customFonts/IranSans.woff') format('woff'),
+        /*مرورگر های جدید*/
+        url('../webfonts/customFonts/IranSans.ttf') format('truetype')
+        /*تمام مرورگرها به جزء اکسپلورر*/
+        /*url('../webfonts/customFonts/DubaiW23-Regular.svg#DubaiW23-Regular') format('svg')*/
+    ;
+    /*نسخه های قدیمی سیستم عامل iOS*/
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Vazir';
+    /*تعریف یک نام برای فونت*/
+    src: url('../webfonts/customFonts/Vazir.ttf');
+    /*اکسپلورر 9 به بعد*/
+    src: local('BTitr'),
+        /*بررسی نصب بودن فونت در سیستم کاربر*/
+        local('BLotusBd'),
+        /*برای برخی از مرورگرها مانند سافاری*/
+        url('../webfonts/customFonts/IranSans.eot?#iefix') format('embedded-opentype'),
+        /*هک برای اکسپلورر 8 و ماقبل*/
+        url('../webfonts/customFonts/IranSans.woff') format('woff'),
+        /*مرورگر های جدید*/
+        url('../webfonts/customFonts/IranSans.ttf') format('truetype')
+        /*تمام مرورگرها به جزء اکسپلورر*/
+        /*url('../webfonts/customFonts/DubaiW23-Regular.svg#DubaiW23-Regular') format('svg')*/
+    ;
+    /*نسخه های قدیمی سیستم عامل iOS*/
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: 'Vazir_thin';
+    /*تعریف یک نام برای فونت*/
+    font-size: 0.7rem;
+    src: url('../webfonts/customFonts/Vazir.ttf');
+    /*اکسپلورر 9 به بعد*/
+    src: local('BTitr'),
+        /*بررسی نصب بودن فونت در سیستم کاربر*/
+        local('BLotusBd'),
+        /*برای برخی از مرورگرها مانند سافاری*/
+        url('../webfonts/customFonts/IranSans.eot?#iefix') format('embedded-opentype'),
+        /*هک برای اکسپلورر 8 و ماقبل*/
+        url('../webfonts/customFonts/IranSans.woff') format('woff'),
+        /*مرورگر های جدید*/
+        url('../webfonts/customFonts/IranSans.ttf') format('truetype')
+        /*تمام مرورگرها به جزء اکسپلورر*/
+        /*url('../webfonts/customFonts/DubaiW23-Regular.svg#DubaiW23-Regular') format('svg')*/
+    ;
+    /*نسخه های قدیمی سیستم عامل iOS*/
+    font-style: normal;
+    font-weight: normal;
+}
+body{
+    padding:0;
+    margin:0;
+}
+    *{
+        font-size: 8px;
+       
+    }
+    @page {size: landscape}
+    body {
+        height: 100%;
+        width: 100%;
+    }
+    .print_inq{
+        font-family:IranSans;
+        font-size:8px;
+        width: 100% ;
+        direction:rtl;
+        padding: 0;
+        margin: 0;
+        page-break-after:always;
+        border:2px solid gray;
+    }
+    .inq_header{
+        
+        display: flex ;
+        justify-content: center;
+        border-bottom: 2px solid gray !important;
+    }
+    .inq_logo{
+        width: 20%;height:auto;text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding:5px;
+        border-left:2px solid gray
+    }
+    .inq_logo img{
+        width: 100%;height:auto;
+    }
+    #print_inq_detailes tr.inq_detailes{
+        border-bottom:2px solid gray
+    }
+    .inq_comment_container{
+        display:flex;
+        justify-content: space-between;
+        flex-direction: row;
+
+        padding:0;
+
+    }
+    .inq_comment_container span{
+        font-size:8px !important;
+        padding:0;
+    }
+    .hide_paraf{
+        display:none;
+    }
+    .bg-gray{
+        background: rgb(231, 228, 228);
+    }
+
+    
+

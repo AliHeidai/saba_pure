@@ -1,0 +1,78 @@
+/* استایل‌های عمومی */
+body {
+    font-family: 'B Nazanin', Arial, sans-serif;
+    direction: rtl;
+    text-align: right;
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+    color: #000;
+}
+
+/* استایل‌های سربرگ */
+.header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 80px;
+    background-color: #f5f5f5;
+    border-bottom: 2px solid #ddd;
+    padding: 10px 20px;
+    text-align: center;
+    
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* استایل‌های محتوا */
+
+.page-content {
+    line-height: 1.6;
+}
+
+th,td{
+    font-family:Tahoma;
+    font-size:12px;
+
+   
+}
+table { page-break-inside:auto;border-collapse: collapse; }
+    tr    { page-break-inside:avoid; page-break-after:auto }
+    thead { display:table-header-group }
+    tfoot { display:table-footer-group }
+
+/* استایل‌های مخصوص چاپ */
+@media print {
+    body {
+        background-color: white;
+        color: black;
+        font-family: Tahoma;
+    }
+    
+ 
+    @page {
+        /* For all pages */
+        @bottom-right {
+          content: "Page " counter(page) " of " counter(pages);
+          font-size: 9pt;
+          color: #666;
+        }
+    }
+    
+    p {
+        page-break-inside: avoid;
+    }
+    
+    /* تنظیم نقاط شکست صفحه */
+    h2 {
+        page-break-before: always;
+    }
+    
+    .page-break {
+        page-break-after: always;
+    }
+}

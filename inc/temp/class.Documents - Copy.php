@@ -1,0 +1,2401 @@
+<?php
+
+class Documents{
+
+    public function __construct(){
+        // do nothing
+    }
+    public function getAcuunts(){
+        $db=new DBi();
+        $ut=new Utility();
+        $sql="SELECT `RowID`,`Name`,`code` from account";
+        $res=$db->ArrayQuery($sql);
+        return $res;
+    }
+
+    public function getOrganizationalDocumentationManageHtm(){
+        $acm = new acm();
+        if(!$acm->hasAccess('organizationalDocumentationManage')){
+            die("access denied");
+            exit;
+        }
+        $ut = new Utility();
+        $user = new User();
+        $rate = new Rates();
+
+        $users = $user->getUsers();
+        $cntu = count($users);
+
+        $units = $rate->getUnits();
+        $cntun = count($units);
+
+        $Accounts_name=$this->getAcuunts();
+        $cntAcc= count($Accounts_name);
+        $hiddenContentId[] = "hiddenOrganizationalDocumentationBody";
+        $pagename = array();
+        $pageIcon = array();
+        $contentId = array();
+        $menuItems = array();
+        $bottons = array();
+        $headerSearch = array();
+        $access = array();
+
+        $x = 0;
+        $y = 0;
+        $z = 0;
+        $manifold = 0;
+        /*
+        if($acm->hasAccess('regulationsManage')) {
+            $pagename[$x] = "آئین نامه ها و دستورالعمل ها";
+            $pageIcon[$x] = "fa-file";
+            $contentId[$x] = "regulationsManageBody";
+            $menuItems[$x] = 'regulationsManageTabID';
+
+            $bottons1 = array();
+            $headerSearch1 = array();
+
+            $b = 0;
+            if($acm->hasAccess('createNewRegulations')) {
+                $bottons1[$b]['title'] = "ثبت فایل جدید";
+                $bottons1[$b]['jsf'] = "createRegulations";
+                $bottons1[$b]['icon'] = "fa-plus-square";
+                $b++;
+
+                $bottons1[$b]['title'] = "ویرایش فایل";
+                $bottons1[$b]['jsf'] = "editRegulations";
+                $bottons1[$b]['icon'] = "fa-edit";
+                $b++;
+
+                $bottons1[$b]['title'] = "حذف فایل";
+                $bottons1[$b]['jsf'] = "deleteRegulations";
+                $bottons1[$b]['icon'] = "fa-minus-square";
+                $b++;
+            }
+
+            if($acm->hasAccess('attachFileToRegulations')) {
+                $bottons1[$b]['title'] = "پیوست فایل";
+                $bottons1[$b]['jsf'] = "attachFileToRegulations";
+                $bottons1[$b]['icon'] = "fa-link";
+            }
+
+            $a = 0;
+            $headerSearch1[$a]['type'] = "text";
+            $headerSearch1[$a]['width'] = "90px";
+            $headerSearch1[$a]['id'] = "regulationsManageSDateSearch";
+            $headerSearch1[$a]['title'] = "تاریخ شروع";
+            $headerSearch1[$a]['placeholder'] = "تاریخ شروع";
+            $a++;
+
+            $headerSearch1[$a]['type'] = "text";
+            $headerSearch1[$a]['width'] = "90px";
+            $headerSearch1[$a]['id'] = "regulationsManageEDateSearch";
+            $headerSearch1[$a]['title'] = "تاریخ پایان";
+            $headerSearch1[$a]['placeholder'] = "تاریخ پایان";
+            $a++;
+
+            $headerSearch1[$a]['type'] = "text";
+            $headerSearch1[$a]['width'] = "200px";
+            $headerSearch1[$a]['id'] = "regulationsManageFNameSearch";
+            $headerSearch1[$a]['title'] = "قسمتی از نام فایل";
+            $headerSearch1[$a]['placeholder'] = "قسمتی از نام فایل";
+            $a++;
+
+            $headerSearch1[$a]['type'] = "text";
+            $headerSearch1[$a]['width'] = "120px";
+            $headerSearch1[$a]['id'] = "regulationsManageFCodeSearch";
+            $headerSearch1[$a]['title'] = "کد فایل";
+            $headerSearch1[$a]['placeholder'] = "کد فایل";
+            $a++;
+
+            $headerSearch1[$a]['type'] = "select";
+            $headerSearch1[$a]['width'] = "100px";
+            $headerSearch1[$a]['id'] = "regulationsManageStatusSearch";
+            $headerSearch1[$a]['title'] = "وضعیت فایل";
+            $headerSearch1[$a]['options'] = array();
+            $headerSearch1[$a]['options'][0]["title"] = "فعال";
+            $headerSearch1[$a]['options'][0]["value"] = "1";
+            $headerSearch1[$a]['options'][1]["title"] = "غیرفعال";
+            $headerSearch1[$a]['options'][1]["value"] = "0";
+            $a++;
+
+            $headerSearch1[$a]['type'] = "btn";
+            $headerSearch1[$a]['title'] = "جستجو&nbsp;&nbsp;<i class='fa fa-search'></i>";
+            $headerSearch1[$a]['jsf'] = "showRegulationsManageList";
+
+            $bottons[$y] = $bottons1;
+            $headerSearch[$z] = $headerSearch1;
+
+            $manifold++;
+            $access[] = 1;
+            $x++;
+            $y++;
+            $z++;
+        }*/
+    
+        if($acm->hasAccess('legalContractsManage')) {
+            $pagename[$x] = "قراردادهای حقوقی";
+            $pageIcon[$x] = "fa-address-card";
+            $contentId[$x] = "legalContractsManageBody";
+            $menuItems[$x] = 'legalContractsManageTabID';
+
+            $bottons3 = array();
+            $headerSearch3 = array();
+
+            $b = 0;
+            if($acm->hasAccess('editCreateLegalContract')) {
+                $bottons3[$b]['title'] = "ثبت قرارداد جدید";
+                $bottons3[$b]['jsf'] = "createLegalContract";
+                $bottons3[$b]['icon'] = "fa-plus-square";
+                $b++;
+
+                $bottons3[$b]['title'] = "ویرایش قرارداد";
+                $bottons3[$b]['jsf'] = "editLegalContract";
+                $bottons3[$b]['icon'] = "fa-edit";
+                $b++;
+
+                $bottons3[$b]['title'] = "حذف قرارداد";
+                $bottons3[$b]['jsf'] = "deleteLegalContract";
+                $bottons3[$b]['icon'] = "fa-minus-square";
+                $b++;
+            }
+
+            if($acm->hasAccess('attachFileToLegalContract')) {
+                $bottons3[$b]['title'] = "پیوست فایل";
+                $bottons3[$b]['jsf'] = "attachFileToLegalContract";
+                $bottons3[$b]['icon'] = "fa-link";
+            }
+
+            $a = 0;
+            $headerSearch3[$a]['type'] = "text";
+            $headerSearch3[$a]['width'] = "90px";
+            $headerSearch3[$a]['id'] = "legalContractManageSDateSearch";
+            $headerSearch3[$a]['title'] = "تاریخ شروع قرارداد";
+            $headerSearch3[$a]['placeholder'] = "تاریخ شروع";
+            $a++;
+
+            $headerSearch3[$a]['type'] = "text";
+            $headerSearch3[$a]['width'] = "90px";
+            $headerSearch3[$a]['id'] = "legalContractManageEDateSearch";
+            $headerSearch3[$a]['title'] = "تاریخ پایان قرارداد";
+            $headerSearch3[$a]['placeholder'] = "تاریخ پایان";
+            $a++;
+
+            $headerSearch3[$a]['type'] = "text";
+            $headerSearch3[$a]['width'] = "200px";
+            $headerSearch3[$a]['id'] = "legalContractManageSubjectSearch";
+            $headerSearch3[$a]['title'] = "قسمتی از موضوع قرارداد";
+            $headerSearch3[$a]['placeholder'] = "قسمتی از موضوع قرارداد";
+            $a++;
+
+            $headerSearch3[$a]['type'] = "text";
+            $headerSearch3[$a]['width'] = "120px";
+            $headerSearch3[$a]['id'] = "legalContractManageCIDSearch";
+            $headerSearch3[$a]['title'] = "شماره قرارداد";
+            $headerSearch3[$a]['placeholder'] = "شماره قرارداد";
+            $a++;
+
+            $headerSearch3[$a]['type'] = "select";
+            $headerSearch3[$a]['width'] = "100px";
+            $headerSearch3[$a]['id'] = "legalContractManageTypeSearch";
+            $headerSearch3[$a]['title'] = "نوع قرارداد";
+            $headerSearch3[$a]['options'] = array();
+            $headerSearch3[$a]['options'][0]["title"] = "نوع قرارداد";
+            $headerSearch3[$a]['options'][0]["value"] = -1;
+            $headerSearch3[$a]['options'][1]["title"] = "فورج";
+            $headerSearch3[$a]['options'][1]["value"] = 0;
+            $headerSearch3[$a]['options'][2]["title"] = "سهامی";
+            $headerSearch3[$a]['options'][2]["value"] = 1;
+            $headerSearch3[$a]['options'][3]["title"] = "حقیقی";
+            $headerSearch3[$a]['options'][3]["value"] = 2;
+            $a++;
+
+            $headerSearch3[$a]['type'] = "select";
+            $headerSearch3[$a]['width'] = "100px";
+            $headerSearch3[$a]['id'] = "legalContractManageStatusSearch";
+            $headerSearch3[$a]['title'] = "وضعیت قرارداد";
+            $headerSearch3[$a]['options'] = array();
+            $headerSearch3[$a]['options'][0]["title"] = "فعال";
+            $headerSearch3[$a]['options'][0]["value"] = "1";
+            $headerSearch3[$a]['options'][1]["title"] = "غیرفعال";
+            $headerSearch3[$a]['options'][1]["value"] = "0";
+            $a++;
+
+            $headerSearch3[$a]['type'] = "btn";
+            $headerSearch3[$a]['title'] = "جستجو&nbsp;&nbsp;<i class='fa fa-search'></i>";
+            $headerSearch3[$a]['jsf'] = "showLegalContractsManageList";
+
+            $bottons[$y] = $bottons3;
+            $headerSearch[$z] = $headerSearch3;
+
+            $manifold++;
+            $access[] = 3;
+                        $x++;
+                        $y++;
+                        $z++;
+        }
+        if($acm->hasAccess('warrantyManage')) {
+            $pagename[$x] = "تضامین فروش";
+            $pageIcon[$x] = "fa-file";
+            $contentId[$x] = "warrantyManageBody";
+            $menuItems[$x] = 'warrantyManageTabID';
+
+            $bottons2 = array();
+            $headerSearch2 = array();
+
+            $b = 0;
+            if($acm->hasAccess('editCreateNewWarranty')) {
+                $bottons2[$b]['title'] = "ثبت تضمین جدید";
+                $bottons2[$b]['jsf'] = "createWarranty";
+                $bottons2[$b]['icon'] = "fa-plus-square";
+                $b++;
+
+                $bottons2[$b]['title'] = "ویرایش تضمین";
+                $bottons2[$b]['jsf'] = "editWarranty";
+                $bottons2[$b]['icon'] = "fa-edit";
+                $b++;
+
+                $bottons2[$b]['title'] = "پیوست فایل";
+                $bottons2[$b]['jsf'] = "attachFileWarranty";
+                $bottons2[$b]['icon'] = "fa-minus-square";
+                $b++;
+
+                $bottons2[$b]['title'] = "ابطال تضمین";
+                $bottons2[$b]['jsf'] = "deleteWarranty";
+                $bottons2[$b]['icon'] = "fa-minus-square";
+                $b++;
+                $bottons2[$b]['title'] = " اتمام تعهد و عودت تضامین";
+                $bottons2[$b]['jsf'] = "endWarranty";
+                $bottons2[$b]['icon'] = "fa-minus-square";
+                $b++;
+                // $bottons2[$b]['title'] = "آرشیو تضمین";
+                // $bottons2[$b]['jsf'] = "deleteWarranty";
+                // $bottons2[$b]['icon'] = "fa-minus-square";
+             
+               
+            }
+
+            if($acm->hasAccess('attachFileToWarranty')) {
+                $bottons2[$b]['title'] = "پیوست فایل";
+                $bottons2[$b]['jsf'] = "attachFileToWarranty";
+                $bottons2[$b]['icon'] = "fa-link";
+            }
+
+            $a = 0;
+            $headerSearch2[$a]['type'] = "text";
+            $headerSearch2[$a]['width'] = "90px";
+            $headerSearch2[$a]['id'] = "warrantyManageSDateSearch";
+            $headerSearch2[$a]['title'] = "تاریخ شروع";
+            $headerSearch2[$a]['placeholder'] = "تاریخ شروع";
+            $a++;
+
+            $headerSearch2[$a]['type'] = "text";
+            $headerSearch2[$a]['width'] = "90px";
+            $headerSearch2[$a]['id'] = "warrantyManageEDateSearch";
+            $headerSearch2[$a]['title'] = "تاریخ پایان";
+            $headerSearch2[$a]['placeholder'] = "تاریخ پایان";
+            $a++;
+
+            $headerSearch2[$a]['type'] = "text";
+            $headerSearch2[$a]['width'] = "200px";
+            $headerSearch2[$a]['id'] = "warrantyManageFNameSearch";
+            $headerSearch2[$a]['title'] = "قسمتی از نام فایل";
+            $headerSearch2[$a]['placeholder'] = "قسمتی از نام فایل";
+            $a++;
+
+            $headerSearch2[$a]['type'] = "text";
+            $headerSearch2[$a]['width'] = "120px";
+            $headerSearch2[$a]['id'] = "warrantyManageFCodeSearch";
+            $headerSearch2[$a]['title'] = "کد فایل";
+            $headerSearch2[$a]['placeholder'] = "کد فایل";
+            $a++;
+
+            $headerSearch2[$a]['type'] = "select";
+            $headerSearch2[$a]['width'] = "100px";
+            $headerSearch2[$a]['id'] = "warrantyManageTypeSearch";
+            $headerSearch2[$a]['title'] = "نوع فایل";
+            $headerSearch2[$a]['options'] = array();
+            $headerSearch2[$a]['options'][0]["title"] = "نوع تضمین";
+            $headerSearch2[$a]['options'][0]["value"] = 0;
+            $headerSearch2[$a]['options'][1]["title"] = "چک ";
+            $headerSearch2[$a]['options'][1]["value"] = 1;
+            $headerSearch2[$a]['options'][2]["title"] = "سفته";
+            $headerSearch2[$a]['options'][2]["value"] = 2;
+            $headerSearch2[$a]['options'][3]["title"] = "سایر تضامین";
+            $headerSearch2[$a]['options'][3]["value"] = 3;
+            $a++;
+
+            $headerSearch2[$a]['type'] = "select";
+            $headerSearch2[$a]['width'] = "100px";
+            $headerSearch2[$a]['id'] = "warrantyManageStatusSearch";
+            $headerSearch2[$a]['title'] = "وضعیت تضمین";
+            $headerSearch2[$a]['options'] = array();
+            $headerSearch2[$a]['options'][0]["title"] = "وضعیت تضمین ";
+            $headerSearch2[$a]['options'][0]["value"] = "";
+            $headerSearch2[$a]['options'][1]["title"] = "درحال بررسی";
+            $headerSearch2[$a]['options'][1]["value"] = "10";
+            $headerSearch2[$a]['options'][2]["title"] = "فعال";
+            $headerSearch2[$a]['options'][2]["value"] = "1";
+            $headerSearch2[$a]['options'][3]["title"] = "آرشیو شده";
+            $headerSearch2[$a]['options'][3]["value"] = "2";
+            $headerSearch2[$a]['options'][4]["title"] = "عودت شده  ";
+            $headerSearch2[$a]['options'][4]["value"] = "-1";
+            $a++;
+
+            $headerSearch2[$a]['type'] = "btn";
+            $headerSearch2[$a]['title'] = "جستجو&nbsp;&nbsp;<i class='fa fa-search'></i>";
+            $headerSearch2[$a]['jsf'] = "showWarrantyManageList";
+
+            $bottons[$y] = $bottons2;
+            $headerSearch[$z] = $headerSearch2;
+
+            $manifold++;
+            $access[] = 2;
+            $x++;
+            $y++;
+            $z++;
+        }
+        $htm = $ut->getHtmlOfDefaultManagementMultiPage($pagename,$pageIcon,$contentId,$menuItems,$bottons,$manifold,$headerSearch,$hiddenContentId);
+        //++++++++++++++++++++++++++++++++++ Edit CREATE MODAL ++++++++++++++++++++++++++++++++
+        $modalID = "regulationsManageModal";
+        $modalTitle = "فرم ثبت/ویرایش فایل";
+        $style = 'style="max-width: 651px;"';
+        $c = 0;
+
+        $items = array();
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "regulationsManageFName";
+        $items[$c]['title'] = "نام فایل";
+        $items[$c]['placeholder'] = "نام";
+        $c++;
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "regulationsManageFCode";
+        $items[$c]['title'] = "کد فایل";
+        $items[$c]['placeholder'] = "کد";
+        $c++;
+
+        $items[$c]['type'] = "select";
+        $items[$c]['id'] = "regulationsManageAccessID";
+        $items[$c]['multiple'] = "multiple";
+        $items[$c]['title'] = "افراد مجاز جهت دانلود فایل";
+        $items[$c]['options'] = array();
+        $items[$c]['options'][0]["title"] = "--------";
+        $items[$c]['options'][0]["value"] = 0;
+        for ($i=0;$i<$cntu;$i++){
+            $items[$c]['options'][$i+1]["title"] = $users[$i]['fname'].' '.$users[$i]['lname'];
+            $items[$c]['options'][$i+1]["value"] = $users[$i]['RowID'];
+        }
+        $c++;
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "regulationsManageSDate";
+        $items[$c]['style'] = "style='width: 70%;float: right;'";
+        $items[$c]['title'] = "تاریخ شروع";
+        $items[$c]['placeholder'] = "تاریخ";
+        $c++;
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "regulationsManageEDate";
+        $items[$c]['style'] = "style='width: 70%;float: right;'";
+        $items[$c]['title'] = "تاریخ پایان";
+        $items[$c]['placeholder'] = "تاریخ";
+        $c++;
+
+        $items[$c]['type'] = "textarea";
+        $items[$c]['id'] = "regulationsManageDescription";
+        $items[$c]['title'] = "توضیحات";
+        $items[$c]['placeholder'] = "متن";
+        $c++;
+
+        $items[$c]['type'] = "hidden";
+        $items[$c]['id'] = "regulationsManageHiddenRid";
+
+        $footerBottons = array();
+        $footerBottons[0]['title'] = "تایید";
+        $footerBottons[0]['jsf'] = "doEditCreateRegulations";
+        $footerBottons[0]['type'] = "btn";
+        $footerBottons[0]['data-dismiss'] = "No";
+        $footerBottons[1]['title'] = "انصراف";
+        $footerBottons[1]['type'] = "dismis";
+        $editCreateModal = $ut->getHtmlModal($modalID,$modalTitle,$items,$footerBottons,'','',$style);
+        //++++++++++++++++++ END OF Edit CREATE MODAL ++++++++++++++++++
+        //++++++++++++++++++ Regulations Add Attachment File Modal ++++++++++++++++++++++
+        $modalID = "regulationsAttachmentFileModal";
+        $modalTitle = "پیوست فایل";
+        $ShowDescription = 'regulationsAttachmentFile-body';
+
+        $c = 0;
+        $items = array();
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "regulationsManageAttachmentName";
+        $items[$c]['title'] = "نام فایل";
+        $items[$c]['placeholder'] = "نام";
+        $c++;
+
+        $items[$c]['type'] = "file";
+        $items[$c]['id'] = "regulationsManageAttachment";
+        $items[$c]['title'] = "بارگذاری فایل های پیوست";
+        $items[$c]['name'] = 'name="files[]"';
+        $items[$c]['helpText'] = "نوع فایل باید PDF, JPG , PNG , XLSX , DOCX باشد.";
+        $items[$c]['multiple'] = 'multiple';
+        $c++;
+
+        $items[$c]['type'] = "hidden";
+        $items[$c]['id'] = "regulationsManageAttachmentID";
+
+        $footerBottons = array();
+        $footerBottons[0]['title'] = "ارسال فایل";
+        $footerBottons[0]['jsf'] = "doAttachFileToRegulations";
+        $footerBottons[0]['type'] = "btn";
+        $footerBottons[0]['data-dismiss'] = "NO";
+        $footerBottons[1]['title'] = "بستن";
+        $footerBottons[1]['type'] = "dismis";
+        $regulationsAttachmentFile = $ut->getHtmlModal($modalID,$modalTitle,$items,$footerBottons,'','','',$ShowDescription);
+        //+++++++++++++++++ End Regulations Add Attachment File Modal ++++++++++++++++++++++++
+        //++++++++++++++++++ Regulations Attachment File Modal ++++++++++++++++++++++
+        $modalID = "showRegulationsAttachmentFileModal";
+        $modalTitle = "دانلود فایل های پیوست";
+        $ShowDescription = 'showRegulationsAttachmentFile-body';
+        $style = 'style="max-width: 655px;"';
+        $items = array();
+        $footerBottons = array();
+        $footerBottons[0]['title'] = "بستن";
+        $footerBottons[0]['type'] = "dismis";
+        $showRegulationsAttachmentFile = $ut->getHtmlModal($modalID,$modalTitle,$items,$footerBottons,'','',$style,$ShowDescription);
+        //+++++++++++++++++ End Regulations Attachment File Modal ++++++++++++++++++++++++
+        //++++++++++++++++++++++++++++++ DELETE MODAL ++++++++++++++++++++++++++++++++++++++++
+        $modalID = "manageDeleteRegulationsModal";
+        $modalTitle = "هشدار";
+        $modalTxt = "آیا نسبت به حذف این فایل مطمئن هستید؟ ";
+        $items = array();
+        $items[0]['type'] = "hidden";
+        $items[0]['id'] = "regulationsManage_deleteIdHidden";
+        $footerBottons = array();
+        $footerBottons[0]['title'] = "تایید";
+        $footerBottons[0]['jsf'] = "dodeleteRegulations";
+        $footerBottons[0]['type'] = "btn";
+        $footerBottons[1]['title'] = "انصراف";
+        $footerBottons[1]['type'] = "dismis";
+        $delModal = $ut->getHtmlModal($modalID,$modalTitle,$items,$footerBottons,$modalTxt);
+        //++++++++++++++++++++++++++++++END OF DELETE MODAL++++++++++++++++++++++++++++
+        //++++++++++++++++++++++++++++++++++ Edit CREATE Warranty MODAL ++++++++++++++++++++++++++++++++
+        $modalID = "warrantyManageModal";
+        $modalTitle = "فرم ثبت/ویرایش تضمین";
+        $style = 'style="max-width: 651px;"';
+        $c = 0;
+        $items = array();
+        $items[$c]['type'] = "paragraph";
+        $items[$c]['id'] = "warrantyManageStatus";
+        $items[$c]['title'] = "وضعیت  سند";
+        $items[$c]['text'] = "در حال بررسی  ";
+        $items[$c]['class'] = "table-secondary ";
+       
+        $c++;
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "warrantyManageTitle";
+        $items[$c]['title'] = "عنوان سند";
+       $c++;
+       
+        $items[$c]['type'] = "select";
+        $items[$c]['id'] = "warrantyManageType";
+        $items[$c]['title'] = "نوع تضمین";
+        $items[$c]['options'][0]["title"] = "--------";
+        $items[$c]['options'][0]["value"] = 0;
+        $items[$c]['options'][1]["title"] = "چک";
+        $items[$c]['options'][1]["value"] = 1;
+        $items[$c]['options'][2]["title"] = "سفته";
+        $items[$c]['options'][2]["value"] = 2;
+        $items[$c]['options'][3]["title"] = "سایر تضامین";
+        $items[$c]['options'][3]["value"] = 3;
+        $c++;
+
+        $items[$c]['type'] = "select";
+        $items[$c]['id'] = "warrantyManageAccType";
+        $items[$c]['title'] = "نوع طرف حساب";
+        $items[$c]['options'][0]["title"] = "--------";
+        $items[$c]['options'][0]["value"] = "";
+        $items[$c]['options'][1]["title"] = "حقیقی";
+        $items[$c]['options'][1]["value"] = 1;
+        $items[$c]['options'][2]["title"] = "حقوقی";
+        $items[$c]['options'][2]["value"] = 2;
+        
+       // $cntAcc= count($Accounts_name);)
+       
+        $c++;
+        $items[$c]['options'] = array();
+        $items[$c]['type'] = "select";
+        $items[$c]['id'] = "warrantyManageAccount";
+        $items[$c]['multiple'] = "multiple";
+        $items[$c]['LimitNumSelections'] = 1;
+        $items[$c]['title'] = "نام طرف حساب";
+        $items[$c]['options'][0]["title"] = "--------";
+        $items[$c]['options'][0]["value"] = 0;
+        foreach($Accounts_name as $acc_index=>$acc_val){
+            $items[$c]['options'][($acc_index+1)]["title"]=$acc_val['Name']. " - ".$acc_val['code'] ;
+            $items[$c]['options'][($acc_index+1)]["value"]=$acc_val['RowID'];
+        }
+        $c++;
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "warrantyDocumentOwner";
+        $items[$c]['title'] = "نام صاحب سند ";
+        $items[$c]['placeholder'] = "نام صاحب سند ";
+        $c++;
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "warrantyDocumentOwnerNatID";
+        $items[$c]['title'] = "کد ملی صاحب سند ";
+        $items[$c]['placeholder'] ="کد ملی صاحب سند ";
+        $c++;
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "warrantyDocumentOwnerOtherInfo";
+        $items[$c]['title'] = " سایر مشخصات سند";
+        $items[$c]['placeholder'] ="سایر مشخصات سند";
+        $c++;
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "warrantyDocumentOwnerCost";
+        $items[$c]['onkeyup'] = "onkeyup=addSeprator()";
+        $items[$c]['title'] = "  مبلغ تضمین (ریال)";
+        $items[$c]['placeholder'] =" مبلغ تضمین (ریال)";
+        $c++;
+
+
+        $items[$c]['type'] = "select";
+        $items[$c]['id'] = "warrantyManageAccessID";
+        $items[$c]['multiple'] = "multiple";
+        $items[$c]['title'] = "افراد مجاز جهت دانلود فایل";
+        $items[$c]['options'] = array();
+        $items[$c]['options'][0]["title"] = "--------";
+        $items[$c]['options'][0]["value"] = 0;
+        for ($i=0;$i<$cntu;$i++){
+            $items[$c]['options'][$i+1]["title"] = $users[$i]['fname'].' '.$users[$i]['lname'];
+            $items[$c]['options'][$i+1]["value"] = $users[$i]['RowID'];
+        }
+        $c++;
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "warrantyManageSDate";
+        $items[$c]['style'] = "style='width: 70%;float: right;'";
+        $items[$c]['title'] = "تاریخ شروع";
+        $items[$c]['placeholder'] = "تاریخ";
+        $c++;
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "warrantyManageEDate";
+        $items[$c]['style'] = "style='width: 70%;float: right;'";
+        $items[$c]['title'] = "تاریخ پایان";
+        $items[$c]['placeholder'] = "تاریخ";
+        $c++;
+
+        $items[$c]['type'] = "textarea";
+        $items[$c]['id'] = "warrantyManageDescription";
+        $items[$c]['title'] = "توضیحات";
+        $items[$c]['placeholder'] = "متن";
+        $c++;
+
+        $items[$c]['type'] = "hidden";
+        $items[$c]['id'] = "warrantyManageHiddenCid";
+
+        $footerBottons = array();
+        $footerBottons[0]['title'] = "تایید";
+        $footerBottons[0]['jsf'] = "doEditCreateWarranty";
+        $footerBottons[0]['type'] = "btn";
+        $footerBottons[0]['data-dismiss'] = "No";
+        $footerBottons[1]['title'] = "انصراف";
+        $footerBottons[1]['type'] = "dismis";
+        $editCreateCircularsModal = $ut->getHtmlModal($modalID,$modalTitle,$items,$footerBottons,'','',$style);
+        //----------------------------------------------------
+        $modalID = "warrantyAttachmentFileModal";
+        $modalTitle = "پیوست فایل";
+        $ShowDescription = 'warrantyAttachmentFile-body';
+
+        $c = 0;
+        $items = array();
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "warrantyManageAttachmentName";
+        $items[$c]['title'] = "نام فایل";
+        $items[$c]['placeholder'] = "نام";
+        $c++;
+
+        $items[$c]['type'] = "file";
+        $items[$c]['id'] = "warrantyManageAttachment";
+        $items[$c]['title'] = "بارگذاری فایل های پیوست";
+        $items[$c]['name'] = 'name="files[]"';
+        $items[$c]['helpText'] = "نوع فایل باید PDF, JPG , PNG , XLSX , DOCX باشد.";
+        $items[$c]['multiple'] = 'multiple';
+        $c++;
+
+        $items[$c]['type'] = "hidden";
+        $items[$c]['id'] = "warrantyManageAttachmentID";
+
+        $footerBottons = array();
+        $footerBottons[0]['title'] = "ارسال فایل";
+        $footerBottons[0]['jsf'] = "doAttachFileToWarranty";
+        $footerBottons[0]['type'] = "btn";
+        $footerBottons[0]['data-dismiss'] = "NO";
+        $footerBottons[1]['title'] = "بستن";
+        $footerBottons[1]['type'] = "dismis";
+        $warrantyAttachmentFile = $ut->getHtmlModal($modalID,$modalTitle,$items,$footerBottons,'','','',$ShowDescription); 
+        //----------------------------------------------------
+        //++++++++++++++++++ END OF Edit CREATE Circulars MODAL ++++++++++++++++++
+        //++++++++++++++++++ Circulars Add Attachment File Modal ++++++++++++++++++++++
+        $modalID = "circularsAttachmentFileModal";
+        $modalTitle = "پیوست فایل";
+        $ShowDescription = 'circularsAttachmentFile-body';
+
+        $c = 0;
+        $items = array();
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "circularsManageAttachmentName";
+        $items[$c]['title'] = "نام فایل";
+        $items[$c]['placeholder'] = "نام";
+        $c++;
+
+        $items[$c]['type'] = "file";
+        $items[$c]['id'] = "circularsManageAttachment";
+        $items[$c]['title'] = "بارگذاری فایل های پیوست";
+        $items[$c]['name'] = 'name="files[]"';
+        $items[$c]['helpText'] = "نوع فایل باید PDF, JPG , PNG , XLSX , DOCX باشد.";
+        $items[$c]['multiple'] = 'multiple';
+        $c++;
+
+        $items[$c]['type'] = "hidden";
+        $items[$c]['id'] = "circularsManageAttachmentID";
+
+        $footerBottons = array();
+        $footerBottons[0]['title'] = "ارسال فایل";
+        $footerBottons[0]['jsf'] = "doAttachFileToCirculars";
+        $footerBottons[0]['type'] = "btn";
+        $footerBottons[0]['data-dismiss'] = "NO";
+        $footerBottons[1]['title'] = "بستن";
+        $footerBottons[1]['type'] = "dismis";
+        $circularsAttachmentFile = $ut->getHtmlModal($modalID,$modalTitle,$items,$footerBottons,'','','',$ShowDescription);
+        //+++++++++++++++++ End Circulars Add Attachment File Modal ++++++++++++++++++++++++
+        //++++++++++++++++++ Circulars Attachment File Modal ++++++++++++++++++++++
+        $modalID = "showCircularsAttachmentFileModal";
+        $modalTitle = "دانلود فایل های پیوست";
+        $ShowDescription = 'showCircularsAttachmentFile-body';
+        $style = 'style="max-width: 655px;"';
+        $items = array();
+        $footerBottons = array();
+        $footerBottons[0]['title'] = "بستن";
+        $footerBottons[0]['type'] = "dismis";
+        $showCircularsAttachmentFile = $ut->getHtmlModal($modalID,$modalTitle,$items,$footerBottons,'','',$style,$ShowDescription);
+        //+++++++++++++++++ End Circulars Attachment File Modal ++++++++++++++++++++++++
+        //++++++++++++++++++++++++++++++ DELETE Circulars MODAL ++++++++++++++++++++++++++++++++++++++++
+        $modalID = "manageDeleteCircularsModal";
+        $modalTitle = "هشدار";
+        $modalTxt = "آیا نسبت به حذف این فایل مطمئن هستید؟ ";
+        $items = array();
+        $items[0]['type'] = "hidden";
+        $items[0]['id'] = "circularsManage_deleteIdHidden";
+        $footerBottons = array();
+        $footerBottons[0]['title'] = "تایید";
+        $footerBottons[0]['jsf'] = "dodeleteCirculars";
+        $footerBottons[0]['type'] = "btn";
+        $footerBottons[1]['title'] = "انصراف";
+        $footerBottons[1]['type'] = "dismis";
+        $delCircularsModal = $ut->getHtmlModal($modalID,$modalTitle,$items,$footerBottons,$modalTxt);
+        //++++++++++++++++++++++++++++++END OF DELETE Circulars MODAL++++++++++++++++++++++++++++
+        //++++++++++++++++++++++++++++++++++EDIT CREATE Legal Contract MODAL++++++++++++++++++++++++++++++++
+        $modalID = "legalContractsManageModal";
+        $modalTitle = "فرم ایجاد/ویرایش قرارداد";
+        $c = 0;
+
+        $items = array();
+        $items[$c]['type'] = "select";
+        $items[$c]['id'] = "legalContractsManageType";
+        $items[$c]['title'] = "نوع قرارداد";
+        $items[$c]['onchange'] = "onchange=changeLegalContractsFields()";
+        $items[$c]['options'] = array();
+        $items[$c]['options'][0]["title"] = "انتخاب کنید";
+        $items[$c]['options'][0]["value"] = -1;
+        $items[$c]['options'][1]["title"] = "فورج";
+        $items[$c]['options'][1]["value"] = 0;
+        $items[$c]['options'][2]["title"] = "سهامی";
+        $items[$c]['options'][2]["value"] = 1;
+        $items[$c]['options'][3]["title"] = "حقیقی";
+        $items[$c]['options'][3]["value"] = 2;
+        $c++;
+
+        $items[$c]['type'] = "select";
+        $items[$c]['id'] = "legalContractsManageUnit";
+        $items[$c]['title'] = "واحد";
+        $items[$c]['options'] = array();
+        $items[$c]['options'][0]["title"] = 'انتخاب کنید';
+        $items[$c]['options'][0]["value"] = 0;
+        for ($i=0;$i<$cntun;$i++){
+            $items[$c]['options'][$i+1]["title"] = $units[$i]['Uname'];
+            $items[$c]['options'][$i+1]["value"] = $units[$i]['RowID'];
+        }
+        $c++;
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "legalContractsManageCID";
+        $items[$c]['title'] = "شماره قرارداد";
+        $items[$c]['placeholder'] = "شماره قرارداد";
+        $c++;
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "legalContractsManageSubject";
+        $items[$c]['title'] = "موضوع قرارداد";
+        $items[$c]['placeholder'] = "موضوع";
+        $c++;
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "legalContractsManageSideOne";
+        $items[$c]['title'] = "طرف اول قرارداد";
+        $items[$c]['placeholder'] = "طرف اول";
+        $c++;
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "legalContractsManageSideTwo";
+        $items[$c]['title'] = "طرف دوم قرارداد";
+        $items[$c]['placeholder'] = "طرف دوم";
+        $c++;
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "legalContractsManageSideTwoFS";
+        $items[$c]['onchange'] = "onchange=getSideTwoCodeTafzili()";
+        $items[$c]['title'] = "طرف دوم قرارداد";
+        $items[$c]['placeholder'] = "طرف دوم قرارداد";
+        $c++;
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "legalContractsManageCodeTafzili";
+        $items[$c]['title'] = "کد تفضیلی";
+        $items[$c]['placeholder'] = "کد تفضیلی";
+        $c++;
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "legalContractsManageSdate";
+        $items[$c]['style'] = "style='width: 150px;float: right;'";
+        $items[$c]['title'] = "تاریخ شروع قرارداد";
+        $items[$c]['placeholder'] = "تاریخ";
+        $c++;
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "legalContractsManageEdate";
+        $items[$c]['style'] = "style='width: 150px;float: right;'";
+        $items[$c]['title'] = "تاریخ پایان قرارداد";
+        $items[$c]['placeholder'] = "تاریخ";
+        $c++;
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "legalContractsManagePhone";
+        $items[$c]['title'] = "تلفن ثابت";
+        $items[$c]['placeholder'] = "شماره";
+        $c++;
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "legalContractsManageMobile";
+        $items[$c]['title'] = "تلفن همراه";
+        $items[$c]['placeholder'] = "شماره";
+        $c++;
+
+/*        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "legalContractsManageTermContract";
+        $items[$c]['title'] = "مدت قرارداد";
+        $items[$c]['placeholder'] = "ماه / روز";
+        $c++;*/
+
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "legalContractsManageAmount";
+        $items[$c]['onkeyup'] = "onkeyup=addSeprator()";
+        $items[$c]['title'] = "مبلغ قرارداد";
+        $items[$c]['placeholder'] = "ریال";
+        $c++;
+
+        $items[$c]['type'] = "textarea";
+        $items[$c]['id'] = "legalContractsManageDesc";
+        $items[$c]['title'] = "تضامین";
+        $items[$c]['placeholder'] = "متن";
+        $c++;
+
+        $items[$c]['type'] = "hidden";
+        $items[$c]['id'] = "legalContractsManageHiddenLid";
+
+        $footerBottons = array();
+        $footerBottons[0]['title'] = "تایید";
+        $footerBottons[0]['jsf'] = "doEditCreateLegalContract";
+        $footerBottons[0]['type'] = "btn";
+        $footerBottons[0]['data-dismiss'] = "NO";
+        $footerBottons[1]['title'] = "انصراف";
+        $footerBottons[1]['type'] = "dismis";
+        $editCreateLegalModal = $ut->getHtmlModal($modalID,$modalTitle,$items,$footerBottons);
+        //++++++++++++++++++++++++++++++ END OF EDIT CREATE Legal Contract MODAL +++++++++++++++++++++++++++++++++++++
+        //++++++++++++++++++++++++++++++ DELETE MODAL ++++++++++++++++++++++++++++++++++++++++
+        $modalID = "manageDeleteLegalContractModal";
+        $modalTitle = "هشدار";
+        $modalTxt = "آیا نسبت به حذف این قرارداد مطمئن هستید؟ ";
+        $items = array();
+        $items[0]['type'] = "hidden";
+        $items[0]['id'] = "legalContract_deleteIdHidden";
+        $footerBottons = array();
+        $footerBottons[0]['title'] = "تایید";
+        $footerBottons[0]['jsf'] = "dodeleteLegalContract";
+        $footerBottons[0]['type'] = "btn";
+        $footerBottons[1]['title'] = "انصراف";
+        $footerBottons[1]['type'] = "dismis";
+        $delLegalContractModal = $ut->getHtmlModal($modalID,$modalTitle,$items,$footerBottons,$modalTxt);
+        //++++++++++++++++++++++++++++++END OF DELETE MODAL++++++++++++++++++++++++++++
+        //++++++++++++++++++ Legal Contract Add Attachment File Modal ++++++++++++++++++++++
+        $modalID = "legalContractAttachmentFileModal";
+        $modalTitle = "پیوست فایل";
+        $ShowDescription = 'legalContractAttachmentFile-body';
+
+        $c = 0;
+        $items = array();
+        $items[$c]['type'] = "text";
+        $items[$c]['id'] = "legalContractManageAttachmentName";
+        $items[$c]['title'] = "نام فایل";
+        $items[$c]['placeholder'] = "نام";
+        $c++;
+
+        $items[$c]['type'] = "file";
+        $items[$c]['id'] = "legalContractManageAttachment";
+        $items[$c]['title'] = "بارگذاری فایل های پیوست";
+        $items[$c]['name'] = 'name="files[]"';
+        $items[$c]['helpText'] = "نوع فایل باید PDF, JPG , PNG , XLSX , DOCX باشد.";
+        $items[$c]['multiple'] = 'multiple';
+        $c++;
+
+        $items[$c]['type'] = "hidden";
+        $items[$c]['id'] = "legalContractManageAttachmentID";
+
+        $footerBottons = array();
+        $footerBottons[0]['title'] = "ارسال فایل";
+        $footerBottons[0]['jsf'] = "doAttachFileToLegalContract";
+        $footerBottons[0]['type'] = "btn";
+        $footerBottons[0]['data-dismiss'] = "NO";
+        $footerBottons[1]['title'] = "بستن";
+        $footerBottons[1]['type'] = "dismis";
+        $legalContractAttachmentFile = $ut->getHtmlModal($modalID,$modalTitle,$items,$footerBottons,'','','',$ShowDescription);
+        //+++++++++++++++++ End Legal Contract Add Attachment File Modal ++++++++++++++++++++++++
+        //++++++++++++++++++ Legal Contract Attachment File Modal ++++++++++++++++++++++
+        $modalID = "showLegalContractAttachFileModal";
+        $modalTitle = "دانلود فایل های پیوست";
+        $ShowDescription = 'showLegalContractAttachFile-body';
+        $style = 'style="max-width: 655px;"';
+        $items = array();
+        $footerBottons = array();
+        $footerBottons[0]['title'] = "بستن";
+        $footerBottons[0]['type'] = "dismis";
+        $showLegalContractAttachmentFile = $ut->getHtmlModal($modalID,$modalTitle,$items,$footerBottons,'','',$style,$ShowDescription);
+        //+++++++++++++++++ End Legal Contract Attachment File Modal ++++++++++++++++++++++++
+
+         //++++++++++++++++++ warranty Attachment File Modal ++++++++++++++++++++++
+         $modalID = "showWarrantyAttachmentFileModal";
+         $modalTitle = "دانلود فایل های پیوست";
+         $ShowDescription = 'showWarrantyAttachmentFile-body';
+         $style = 'style="max-width: 655px;"';
+         $items = array();
+         $footerBottons = array();
+         $footerBottons[0]['title'] = "بستن";
+         $footerBottons[0]['type'] = "dismis";
+         $showWarrantyAttachmentFile = $ut->getHtmlModal($modalID,$modalTitle,$items,$footerBottons,'','',$style,$ShowDescription);
+         //+++++++++++++++++ End warranty Attachment File Modal ++++++++++++++++++++++++
+         $modalID = "manageDeleteWarrantyModal";
+         $modalTitle = "ابطال تضمین ";
+         $modalTxt="کلیه مسئولیت و عواقب حذف سند بر عهده کاربر حذف کننده می باشد ";
+         $items = array();
+         $items[0]['type'] = "hidden";
+         $items[0]['id'] = "WarrantyManage_deleteIdHidden";
+         $items[1]['type'] = "textarea";
+         $items[1]['id'] = "WarrantyManage_deleteComment";
+         $items[1]['title'] = "علت ابطال را وارد نمایید ";
+         $items[1]['placeholder'] = "علت ابطال  ";
+        
+         $footerBottons = array();
+         $footerBottons[0]['title'] = "تایید";
+         $footerBottons[0]['jsf'] = "dodeleteWarranty";
+         $footerBottons[0]['type'] = "btn";
+         
+         $delWarrantyModal = $ut->getHtmlModal($modalID,$modalTitle,$items,$footerBottons,$modalTxt);
+         //-------------------------------------------------end warranty-----------------------------
+         //-----------------------------------------------------------------------------------------------
+
+         $modalID = "manageEndWarrantyModal";
+         $modalTitle = "اتمام تعهد و عودت تضمین";
+         $modalTxt="";
+         $items = array();
+         $items[0]['type'] = "hidden";
+         $items[0]['id'] = "WarrantyManage_endIdHidden";
+         $items[1]['type'] = "text";
+         $items[1]['id'] = "WarrantyManage_endDate";
+         $items[1]['title'] = " تاریخ اتمام ";
+         $items[1]['placeholder'] = "تاریخ اتمام  ";
+        // $items[1]['onchange'] = "onchange='get_end_date_warranty(this)'";
+         $items[2]['type'] = "textarea";
+         $items[2]['id'] = "WarrantyManage_endComment";
+         $items[2]['title'] = " توضیحات ";
+         $items[2]['placeholder'] = " توضیحات";
+
+         $items[3]['type'] = "checkbox";
+         $items[3]['id'] = "upload_all_needed_files";
+         $items[3]['title'] = " کلیه مستندات مرتبط با عودت تضمین دریافت و آپلود گردیده است ";
+         
+        
+         $footerBottons = array();
+         $footerBottons[0]['title'] = "تایید";
+         $footerBottons[0]['jsf'] = "doEndWarranty";
+         $footerBottons[0]['type'] = "btn";
+         
+         $endWarrantyModal = $ut->getHtmlModal($modalID,$modalTitle,$items,$footerBottons,$modalTxt);
+         //-----------------------------------------------------------------------------------------------
+        $htm .= $editCreateModal;
+        $htm .= $regulationsAttachmentFile;
+        $htm .= $showRegulationsAttachmentFile;
+        $htm .= $delModal;
+        $htm .= $editCreateCircularsModal;
+        $htm .= $circularsAttachmentFile;
+        $htm .= $warrantyAttachmentFile;
+        $htm .= $showCircularsAttachmentFile;
+        $htm .= $delCircularsModal;
+        $htm .= $editCreateLegalModal;
+        $htm .= $delLegalContractModal;
+        $htm .= $legalContractAttachmentFile;
+        $htm .= $showLegalContractAttachmentFile;
+        $htm .= $showWarrantyAttachmentFile;
+        $htm .= $delWarrantyModal;
+        $htm .= $endWarrantyModal;
+        $send = array($htm,$access);
+        return $send;
+    }
+
+    //++++++++++++++++++++++ آئین نامه ها و دستورالعمل ها +++++++++++++++++++++++
+
+    public function getRegulationsManageList($Name,$Code,$SDate,$EDate,$status,$page=1){
+        $acm = new acm();
+        if(!$acm->hasAccess('regulationsManage')){
+            die("access denied");
+            exit;
+        }
+        $db = new DBi();
+        $ut = new Utility();
+        $flag = ($acm->hasAccess('createNewRegulations') || $acm->hasAccess('attachFileToRegulations') ? true : false);
+        $numRows = LISTCNT;
+        $start = ($page-1)*$numRows;
+        $w = array();
+        if(strlen(trim($Name)) > 0){
+            $w[] = '`Name` LIKE "%'.$Name.'%" ';
+        }
+        if(strlen(trim($Code)) > 0){
+            $w[] = '`Code`="'.$Code.'" ';
+        }
+        if(strlen(trim($SDate)) > 0){
+            $SDate = $ut->jal_to_greg($SDate);
+            $w[] = '`startDate` >="'.$SDate.'" ';
+        }
+        if(strlen(trim($EDate)) > 0){
+            $EDate = $ut->jal_to_greg($EDate);
+            $w[] = '`endDate` <="'.$EDate.'" ';
+        }
+        $w[] = '`isEnable`='.$status.' ';
+
+        $sql = "SELECT * FROM `regulations`";
+        if(count($w) > 0){
+            $where = implode(" AND ",$w);
+            $sql .= " WHERE ".$where;
+        }
+        $sql .= " ORDER BY `RowID` DESC LIMIT $start,".$numRows;
+        $res = $db->ArrayQuery($sql);
+        $listCount = count($res);
+        $finalRes = array();
+        for($y=0;$y<$listCount;$y++){
+            $users = array();
+            $access = explode(',',$res[$y]['accessID']);
+            if (!$flag) {
+                if (!in_array($_SESSION['userid'], $access)) {
+                    continue;
+                }
+            }
+            $cnt = count($access);
+            for ($i=0;$i<$cnt;$i++){
+                $query = "SELECT `fname`,`lname` FROM `users` WHERE `RowID`={$access[$i]}";
+                $rst = $db->ArrayQuery($query);
+                $users[] = $rst[0]['fname'].' '.$rst[0]['lname'];
+            }
+            $finalRes[$y]['users'] = implode(' , ',$users);
+            $finalRes[$y]['RowID'] = $res[$y]['RowID'];
+            $finalRes[$y]['Name'] = $res[$y]['Name'];
+            $finalRes[$y]['Code'] = $res[$y]['Code'];
+            $finalRes[$y]['startDate'] = $ut->greg_to_jal($res[$y]['startDate']);
+            $finalRes[$y]['endDate'] = $ut->greg_to_jal($res[$y]['endDate']);
+            $finalRes[$y]['description'] = $res[$y]['description'];
+        }
+        $finalRes = array_values($finalRes);
+        return $finalRes;
+    }
+
+    public function getRegulationsManageListCountRows($Name,$Code,$SDate,$EDate,$status){
+        $db = new DBi();
+        $acm = new acm();
+        $ut = new Utility();
+        $flag = ($acm->hasAccess('createNewRegulations') || $acm->hasAccess('attachFileToRegulations') ? true : false);
+        $w = array();
+        if(strlen(trim($Name)) > 0){
+            $w[] = '`Name` LIKE "%'.$Name.'%" ';
+        }
+        if(strlen(trim($Code)) > 0){
+            $w[] = '`Code`="'.$Code.'" ';
+        }
+        if(strlen(trim($SDate)) > 0){
+            $SDate = $ut->jal_to_greg($SDate);
+            $w[] = '`startDate` >="'.$SDate.'" ';
+        }
+        if(strlen(trim($EDate)) > 0){
+            $EDate = $ut->jal_to_greg($EDate);
+            $w[] = '`endDate` <="'.$EDate.'" ';
+        }
+        $w[] = '`isEnable`='.$status.' ';
+
+        $sql = "SELECT `RowID`,`accessID` FROM `regulations`";
+        if(count($w) > 0){
+            $where = implode(" AND ",$w);
+            $sql .= " WHERE ".$where;
+        }
+        $res = $db->ArrayQuery($sql);
+        $listCount = count($res);
+        $finalRes = array();
+        for($y=0;$y<$listCount;$y++){
+            $access = explode(',',$res[$y]['accessID']);
+            if (!$flag) {
+                if (!in_array($_SESSION['userid'], $access)) {
+                    continue;
+                }
+            }
+            $finalRes[$y]['RowID'] = $res[$y]['RowID'];
+        }
+        $finalRes = array_values($finalRes);
+        return count($finalRes);
+    }
+
+    public function regulationsInfo($rid){
+        $db = new DBi();
+        $ut = new Utility();
+        $sql = "SELECT * FROM `regulations` WHERE `RowID`=".$rid;
+        $res = $db->ArrayQuery($sql);
+        if(count($res) == 1){
+            $res = array("rid"=>$rid,"Name"=>$res[0]['Name'],"Code"=>$res[0]['Code'],"accessID"=>$res[0]['accessID'],"startDate"=>$ut->greg_to_jal($res[0]['startDate']),"endDate"=>$ut->greg_to_jal($res[0]['endDate']),"description"=>$res[0]['description']);
+            return $res;
+        }else{
+            return false;
+        }
+    }
+
+    public function createRegulations($fname,$fcode,$SDate,$EDate,$desc,$accID){
+        $acm = new acm();
+        if(!$acm->hasAccess('regulationsManage')){
+            die("access denied");
+            exit;
+        }
+        $db = new DBi();
+        $ut = new Utility();
+        $SDate = $ut->jal_to_greg($SDate);
+        $EDate = $ut->jal_to_greg($EDate);
+        $sql = "INSERT INTO `regulations` (`Name`,`Code`,`accessID`,`startDate`,`endDate`,`description`) VALUES ('{$fname}','{$fcode}','{$accID}','{$SDate}','{$EDate}','{$desc}')";
+        $res = $db->Query($sql);
+        if (intval($res) > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function editRegulations($rid,$fname,$fcode,$SDate,$EDate,$desc,$accID){
+        $acm = new acm();
+        if(!$acm->hasAccess('regulationsManage')){
+            die("access denied");
+            exit;
+        }
+        $db = new DBi();
+        $ut = new Utility();
+        $SDate = $ut->jal_to_greg($SDate);
+        $EDate = $ut->jal_to_greg($EDate);
+        $sql = "UPDATE `regulations` SET `Name`='{$fname}',`Code`='{$fcode}',`accessID`='{$accID}',`startDate`='{$SDate}',`endDate`='{$EDate}',`description`='{$desc}' WHERE `RowID`={$rid}";
+        $db->Query($sql);
+        $res = $db->AffectedRows();
+        $res = (($res == -1 || $res == 0) ? 0 : 1);
+        if (intval($res)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function deleteRegulations($rid){
+        $acm = new acm();
+        if(!$acm->hasAccess('regulationsManage')){
+            die("access denied");
+            exit;
+        }
+        $db = new DBi();
+        $sql = "UPDATE `regulations` SET `isEnable`=0 WHERE `RowID`=".$rid;
+        $db->Query($sql);
+        $res = $db->AffectedRows();
+        $res = (($res == -1 || $res == 0) ? 0 : 1);
+        if($res){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function attachFileToRegulations($rid,$info,$files){
+        $db = new DBi();
+        $SFile = array();
+        $allowedTypes = ['png','jpg','jpeg','pdf','xlsx','docx','PNG','JPG','JPEG','PDF','XLSX','DOCX'];
+        if (isset($files) && !empty($files)) {
+            $no_files = count($files['name']);
+            for ($i = 0; $i < $no_files; $i++) {
+                $filepath = $files["tmp_name"][$i];
+                if ($files["error"][$i] > 0) {  // اگر یک فایل ارور داشت
+                    return -1;
+                }
+                if (filesize($filepath) === 0) {  // اگر سایز یک فایل صفر بود
+                    return -2;
+                }
+                
+                $format = substr($files['name'][$i], strpos($files['name'][$i], ".") + 1);
+                if(!in_array($format, $allowedTypes)) {  // اگر پسوند فایل نادرست بود
+                    return -3;
+                }
+                $SFile[] = "Regulations" . rand(0, time()).'.'.$format;
+            } // for()
+        } //  if (isset($files) && !empty($files))
+
+        $cnt = count($SFile);
+        for ($i=0;$i<$cnt;$i++) {
+            $upload = move_uploaded_file($files["tmp_name"][$i],'../documents/'.$SFile[$i]);
+            $sql4 = "INSERT INTO `regulations_attachment` (`rid`,`fileName`,`fileInfo`) VALUES ({$rid},'{$SFile[$i]}','{$info}')";
+            $db->Query($sql4);
+        }
+        return true;
+    }
+
+    public function deleteAttachRegulationsFile($fid){
+        $db = new DBi();
+        $sql = "SELECT `fileName` FROM `regulations_attachment` WHERE `RowID`={$fid}";
+        $res = $db->ArrayQuery($sql);
+        $file_to_delete = str_replace('\\', '/', dirname(__DIR__)) . '/documents/' . $res[0]['fileName'];
+        $result = unlink($file_to_delete);
+        if ($result) {
+            $query = "DELETE FROM `regulations_attachment` WHERE `RowID`={$fid}";
+            $db->Query($query);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function attachedRegulationsFileHtm($rid){
+        $db = new DBi();
+        $sql = "SELECT `RowID`,`fileName`,`fileInfo` FROM `regulations_attachment` WHERE `rid`={$rid}";
+        $res = $db->ArrayQuery($sql);
+        $cnt = count($res);
+        $iterator = 0;
+        $htm = '';
+        $htm .= '<table class="table table-bordered table-hover table-sm" id="attachmentFileRegulations-tableID">';
+        $htm .= '<thead>';
+        $htm .= '<tr class="bg-info">';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 5%;">ردیف</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 55%;">نام فایل</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 20%;">لینک دانلود</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 20%;">حذف فایل</td>';
+        $htm .= '</tr>';
+        $htm .= '</thead>';
+        $htm .= '<tbody>';
+        for ($i=0;$i<$cnt;$i++){
+            $iterator++;
+            $link = ADDR.'documents/'.$res[$i]['fileName'];
+
+            $htm .= '<tr class="table-secondary">';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;">'.$iterator.'</td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;">'.$res[$i]['fileInfo'].'</td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;"><a class="btn btn-info" href="'.$link.'" target="_blank"><i class="fas fa-download"></i></a></td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;"><button class="btn btn-danger" onclick="deleteAttachRegulationsFile('.$res[$i]['RowID'].')" ><i class="fas fa-trash"></i></button></td>';
+            $htm .= '</tr>';
+        }
+        $htm .= '</tbody>';
+        $htm .= '</table>';
+        return $htm;
+    }
+
+    public function attachmentFileRegulationsHtm($rid){
+        $db = new DBi();
+        $sql = "SELECT `fileName`,`fileInfo` FROM `regulations_attachment` WHERE `rid`={$rid}";
+        $res = $db->ArrayQuery($sql);
+        $cnt = count($res);
+        $iterator = 0;
+        $htm = '';
+        $htm .= '<table class="table table-bordered table-hover table-sm" id="attachmentFileRegulations1-tableID">';
+        $htm .= '<thead>';
+        $htm .= '<tr class="bg-info">';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 10%;">ردیف</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 70%;">نام فایل</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 20%;">لینک دانلود</td>';
+        $htm .= '</tr>';
+        $htm .= '</thead>';
+        $htm .= '<tbody>';
+        for ($i=0;$i<$cnt;$i++){
+            $iterator++;
+            $link = ADDR.'documents/'.$res[$i]['fileName'];
+            $htm .= '<tr class="table-secondary">';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;">'.$iterator.'</td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;">'.$res[$i]['fileInfo'].'</td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;"><a class="btn btn-info" href="'.$link.'" target="_blank"><i class="fas fa-download"></i></a></td>';
+            $htm .= '</tr>';
+        }
+        $htm .= '</tbody>';
+        $htm .= '</table>';
+        return $htm;
+    }
+
+    //++++++++++++++++++++++ بخشنامه ها +++++++++++++++++++++++
+
+    public function getCircularsManageList($Name,$Code,$SDate,$EDate,$status,$type,$page=1){
+        $acm = new acm();
+        if(!$acm->hasAccess('circularsManage')){
+            die("access denied");
+            exit;
+        }
+        $db = new DBi();
+        $ut = new Utility();
+        $flag = ($acm->hasAccess('editCreateNewCirculars') || $acm->hasAccess('attachFileToCirculars') ? true : false);
+        $numRows = LISTCNT;
+        $start = ($page-1)*$numRows;
+        $w = array();
+        if(strlen(trim($Name)) > 0){
+            $w[] = '`Name` LIKE "%'.$Name.'%" ';
+        }
+        if(strlen(trim($Code)) > 0){
+            $w[] = '`Code`="'.$Code.'" ';
+        }
+        if(strlen(trim($SDate)) > 0){
+            $SDate = $ut->jal_to_greg($SDate);
+            $w[] = '`startDate` >="'.$SDate.'" ';
+        }
+        if(strlen(trim($EDate)) > 0){
+            $EDate = $ut->jal_to_greg($EDate);
+            $w[] = '`endDate` <="'.$EDate.'" ';
+        }
+        if(intval($type) > 0){
+            $w[] = '`type`='.$type.' ';
+        }
+        $w[] = '`isEnable`='.$status.' ';
+
+        $sql = "SELECT * FROM `circulars`";
+        if(count($w) > 0){
+            $where = implode(" AND ",$w);
+            $sql .= " WHERE ".$where;
+        }
+        $sql .= " ORDER BY `RowID` DESC LIMIT $start,".$numRows;
+        $res = $db->ArrayQuery($sql);
+        $listCount = count($res);
+        $finalRes = array();
+        for($y=0;$y<$listCount;$y++){
+            $users = array();
+            $access = explode(',',$res[$y]['accessID']);
+            if (!$flag) {
+                if (!in_array($_SESSION['userid'], $access)) {
+                    continue;
+                }
+            }
+            $cnt = count($access);
+            for ($i=0;$i<$cnt;$i++){
+                $query = "SELECT `fname`,`lname` FROM `users` WHERE `RowID`={$access[$i]}";
+                $rst = $db->ArrayQuery($query);
+                $users[] = $rst[0]['fname'].' '.$rst[0]['lname'];
+            }
+            $finalRes[$y]['users'] = implode(' , ',$users);
+            $finalRes[$y]['RowID'] = $res[$y]['RowID'];
+            switch ($res[$y]['type']){
+                case 1:
+                    $finalRes[$y]['type'] = 'بخشنامه ها';
+                    break;
+                case 2:
+                    $finalRes[$y]['type'] = 'مصوبات';
+                    break;
+                case 3:
+                    $finalRes[$y]['type'] = 'ابلاغیه ها';
+                    break;
+            }
+            $finalRes[$y]['Name'] = $res[$y]['Name'];
+            $finalRes[$y]['Code'] = $res[$y]['Code'];
+            $finalRes[$y]['startDate'] = $ut->greg_to_jal($res[$y]['startDate']);
+            $finalRes[$y]['endDate'] = $ut->greg_to_jal($res[$y]['endDate']);
+            $finalRes[$y]['description'] = $res[$y]['description'];
+        }
+        $finalRes = array_values($finalRes);
+        return $finalRes;
+    }
+
+    public function getCircularsManageListCountRows($Name,$Code,$SDate,$EDate,$status,$type){
+        $db = new DBi();
+        $acm = new acm();
+        $ut = new Utility();
+        $flag = ($acm->hasAccess('editCreateNewCirculars') || $acm->hasAccess('attachFileToCirculars') ? true : false);
+        $w = array();
+        if(strlen(trim($Name)) > 0){
+            $w[] = '`Name` LIKE "%'.$Name.'%" ';
+        }
+        if(strlen(trim($Code)) > 0){
+            $w[] = '`Code`="'.$Code.'" ';
+        }
+        if(strlen(trim($SDate)) > 0){
+            $SDate = $ut->jal_to_greg($SDate);
+            $w[] = '`startDate` >="'.$SDate.'" ';
+        }
+        if(strlen(trim($EDate)) > 0){
+            $EDate = $ut->jal_to_greg($EDate);
+            $w[] = '`endDate` <="'.$EDate.'" ';
+        }
+        if(intval($type) > 0){
+            $w[] = '`type`='.$type.' ';
+        }
+        $w[] = '`isEnable`='.$status.' ';
+
+        $sql = "SELECT `RowID`,`accessID` FROM `circulars`";
+        if(count($w) > 0){
+            $where = implode(" AND ",$w);
+            $sql .= " WHERE ".$where;
+        }
+        $res = $db->ArrayQuery($sql);
+        $listCount = count($res);
+        $finalRes = array();
+        for($y=0;$y<$listCount;$y++){
+            $access = explode(',',$res[$y]['accessID']);
+            if (!$flag) {
+                if (!in_array($_SESSION['userid'], $access)) {
+                    continue;
+                }
+            }
+            $finalRes[$y]['RowID'] = $res[$y]['RowID'];
+        }
+        $finalRes = array_values($finalRes);
+        return count($finalRes);
+    }
+
+    // public function circularsInfo($cid){
+    //     $db = new DBi();
+    //     $ut = new Utility();
+    //     $sql = "SELECT * FROM `circulars` WHERE `RowID`=".$cid;
+    //     $res = $db->ArrayQuery($sql);
+    //     if(count($res) == 1){
+    //         $res = array("cid"=>$cid,"Name"=>$res[0]['Name'],"Code"=>$res[0]['Code'],"accessID"=>$res[0]['accessID'],"startDate"=>$ut->greg_to_jal($res[0]['startDate']),"endDate"=>$ut->greg_to_jal($res[0]['endDate']),"description"=>$res[0]['description'],"type"=>$res[0]['type']);
+    //         return $res;
+    //     }else{
+    //         return false;
+    //     }
+    // }
+
+    public function createCirculars($fname,$fcode,$SDate,$EDate,$desc,$accID,$type){
+        $acm = new acm();
+        if(!$acm->hasAccess('circularsManage')){
+            die("access denied");
+            exit;
+        }
+        $db = new DBi();
+        $ut = new Utility();
+        $SDate = $ut->jal_to_greg($SDate);
+        $EDate = $ut->jal_to_greg($EDate);
+        $sql = "INSERT INTO `circulars` (`type`,`Name`,`Code`,`accessID`,`startDate`,`endDate`,`description`) VALUES ({$type},'{$fname}','{$fcode}','{$accID}','{$SDate}','{$EDate}','{$desc}')";
+        $res = $db->Query($sql);
+        if (intval($res) > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function editCirculars($cid,$fname,$fcode,$SDate,$EDate,$desc,$accID,$type){
+        $acm = new acm();
+        if(!$acm->hasAccess('circularsManage')){
+            die("access denied");
+            exit;
+        }
+        $db = new DBi();
+        $ut = new Utility();
+        $SDate = $ut->jal_to_greg($SDate);
+        $EDate = $ut->jal_to_greg($EDate);
+        $sql = "UPDATE `circulars` SET `Name`='{$fname}',`Code`='{$fcode}',`accessID`='{$accID}',`startDate`='{$SDate}',`endDate`='{$EDate}',`description`='{$desc}',`type`={$type} WHERE `RowID`={$cid}";
+        $db->Query($sql);
+        $res = $db->AffectedRows();
+        $res = (($res == -1 || $res == 0) ? 0 : 1);
+        if (intval($res)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function deleteCirculars($cid){
+        $acm = new acm();
+        if(!$acm->hasAccess('circularsManage')){
+            die("access denied");
+            exit;
+        }
+        $db = new DBi();
+        $sql = "UPDATE `circulars` SET `isEnable`=0 WHERE `RowID`=".$cid;
+        $db->Query($sql);
+        $res = $db->AffectedRows();
+        $res = (($res == -1 || $res == 0) ? 0 : 1);
+        if($res){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function attachedCircularsFileHtm($cid){
+        $db = new DBi();
+        $sql = "SELECT `RowID`,`fileName`,`fileInfo` FROM `circulars_attachment` WHERE `cid`={$cid}";
+        $res = $db->ArrayQuery($sql);
+        $cnt = count($res);
+        $iterator = 0;
+        $htm = '';
+        $htm .= '<table class="table table-bordered table-hover table-sm" id="attachmentFileCirculars-tableID">';
+        $htm .= '<thead>';
+        $htm .= '<tr class="bg-info">';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 5%;">ردیف</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 55%;">نام فایل</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 20%;">لینک دانلود</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 20%;">حذف فایل</td>';
+        $htm .= '</tr>';
+        $htm .= '</thead>';
+        $htm .= '<tbody>';
+        for ($i=0;$i<$cnt;$i++){
+            $iterator++;
+            $link = ADDR.'documents/'.$res[$i]['fileName'];
+
+            $htm .= '<tr class="table-secondary">';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;">'.$iterator.'</td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;">'.$res[$i]['fileInfo'].'</td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;"><a class="btn btn-info" href="'.$link.'" target="_blank"><i class="fas fa-download"></i></a></td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;"><button class="btn btn-danger" onclick="deleteAttachCircularsFile('.$res[$i]['RowID'].')" ><i class="fas fa-trash"></i></button></td>';
+            $htm .= '</tr>';
+        }
+        $htm .= '</tbody>';
+        $htm .= '</table>';
+        return $htm;
+    }
+
+    public function attachFileToCirculars($cid,$info,$files){
+        $db = new DBi();
+        $SFile = array();
+        $allowedTypes = ['png','jpg','jpeg','pdf','xlsx','docx','PNG','JPG','JPEG','PDF','XLSX','DOCX'];
+        if (isset($files) && !empty($files)) {
+            $no_files = count($files['name']);
+            for ($i = 0; $i < $no_files; $i++) {
+                $filepath = $files["tmp_name"][$i];
+                if ($files["error"][$i] > 0) {  // اگر یک فایل ارور داشت
+                    return -1;
+                }
+                if (filesize($filepath) === 0) {  // اگر سایز یک فایل صفر بود
+                    return -2;
+                }
+                $format = substr($files['name'][$i], strpos($files['name'][$i], ".") + 1);
+                if(!in_array($format, $allowedTypes)) {  // اگر پسوند فایل نادرست بود
+                    return -3;
+                }
+                $SFile[] = "Circulars" . rand(0, time()).'.'.$format;
+            } // for()
+        } //  if (isset($files) && !empty($files))
+
+        $cnt = count($SFile);
+        for ($i=0;$i<$cnt;$i++) {
+            $upload = move_uploaded_file($files["tmp_name"][$i],'../documents/'.$SFile[$i]);
+            $sql4 = "INSERT INTO `circulars_attachment` (`cid`,`fileName`,`fileInfo`) VALUES ({$cid},'{$SFile[$i]}','{$info}')";
+            $db->Query($sql4);
+        }
+        return true;
+    }
+
+    public function deleteAttachCircularsFile($fid){
+        $db = new DBi();
+        $sql = "SELECT `fileName` FROM `circulars_attachment` WHERE `RowID`={$fid}";
+        $res = $db->ArrayQuery($sql);
+        $file_to_delete = str_replace('\\', '/', dirname(__DIR__)) . '/documents/' . $res[0]['fileName'];
+        $result = unlink($file_to_delete);
+        if ($result) {
+            $query = "DELETE FROM `circulars_attachment` WHERE `RowID`={$fid}";
+            $db->Query($query);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function attachmentFileCircularsHtm($cid){
+        $db = new DBi();
+        $sql = "SELECT `fileName`,`fileInfo` FROM `circulars_attachment` WHERE `cid`={$cid}";
+        $res = $db->ArrayQuery($sql);
+        $cnt = count($res);
+        $iterator = 0;
+        $htm = '';
+        $htm .= '<table class="table table-bordered table-hover table-sm" id="attachmentFileCirculars1-tableID">';
+        $htm .= '<thead>';
+        $htm .= '<tr class="bg-info">';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 10%;">ردیف</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 70%;">نام فایل</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 20%;">لینک دانلود</td>';
+        $htm .= '</tr>';
+        $htm .= '</thead>';
+        $htm .= '<tbody>';
+        for ($i=0;$i<$cnt;$i++){
+            $iterator++;
+            $link = ADDR.'documents/'.$res[$i]['fileName'];
+            $htm .= '<tr class="table-secondary">';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;">'.$iterator.'</td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;">'.$res[$i]['fileInfo'].'</td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;"><a class="btn btn-info" href="'.$link.'" target="_blank"><i class="fas fa-download"></i></a></td>';
+            $htm .= '</tr>';
+        }
+        $htm .= '</tbody>';
+        $htm .= '</table>';
+        return $htm;
+    }
+
+    //++++++++++++++++++++++ قراردادهای حقوقی +++++++++++++++++++++++
+
+    public function getLegalContractsManageList($Subject,$CID,$SDate,$EDate,$type,$status,$page=1){
+        $acm = new acm();
+        if(!$acm->hasAccess('legalContractsManage')){
+            die("access denied");
+            exit;
+        }
+        $db = new DBi();
+        $ut = new Utility();
+        $numRows = LISTCNT;
+        $start = ($page-1)*$numRows;
+        $w = array();
+        if(strlen(trim($Subject)) > 0){
+            $w[] = '`subjectContract` LIKE "%'.$Subject.'%" ';
+        }
+        if(strlen(trim($CID)) > 0){
+            $w[] = '`ContractID`="'.$CID.'" ';
+        }
+        if(strlen(trim($SDate)) > 0){
+            $SDate = $ut->jal_to_greg($SDate);
+            $w[] = '`BeginDateContract` >="'.$SDate.'" ';
+        }
+        if(strlen(trim($EDate)) > 0){
+            $EDate = $ut->jal_to_greg($EDate);
+            $w[] = '`EndDateContract` <="'.$EDate.'" ';
+        }
+        if(intval($type) >= 0){
+            $w[] = '`type`='.$type.' ';
+        }
+        $w[] = '`isEnable`='.$status.' ';
+
+        $query = "SELECT `uids` FROM `relatedunits` WHERE `RowID`=31";
+        $rsty = $db->ArrayQuery($query);
+        $uids = str_replace('1','0',$rsty[0]['uids']);
+        $uids = explode(',',$uids);
+        if (in_array($_SESSION['userid'],$uids)){
+            $w[] = '`unitID`=22 ';
+        }
+
+        $sql = "SELECT * FROM `legal_contracts`";
+        if(count($w) > 0){
+            $where = implode(" AND ",$w);
+            $sql .= " WHERE ".$where;
+        }
+        $sql .= " ORDER BY `RowID` DESC LIMIT $start,".$numRows;
+        $res = $db->ArrayQuery($sql);
+        $listCount = count($res);
+        $finalRes = array();
+        for($y=0;$y<$listCount;$y++){
+            $sqq = "SELECT `Uname` FROM `official_productive_units` WHERE `RowID`={$res[$y]['unitID']}";
+            $rst = $db->ArrayQuery($sqq);
+            $finalRes[$y]['Uname'] = $rst[0]['Uname'];
+            $finalRes[$y]['RowID'] = $res[$y]['RowID'];
+            $finalRes[$y]['ContractID'] = $res[$y]['ContractID'];
+            $finalRes[$y]['subjectContract'] = $res[$y]['subjectContract'];
+            $finalRes[$y]['sideOne'] = $res[$y]['sideOne'];
+            $finalRes[$y]['sideTwo'] = $res[$y]['sideTwo'];
+            $finalRes[$y]['BeginDateContract'] = $ut->greg_to_jal($res[$y]['BeginDateContract']);
+            $finalRes[$y]['EndDateContract'] = $ut->greg_to_jal($res[$y]['EndDateContract']);
+            $finalRes[$y]['phone'] = $res[$y]['phone'];
+            $finalRes[$y]['mobile'] = $res[$y]['mobile'];
+            $finalRes[$y]['Term_contract'] = $res[$y]['Term_contract'].' روز / ماه';
+            $finalRes[$y]['Amount'] = number_format($res[$y]['Amount']).' ريال';
+            $finalRes[$y]['description'] = $res[$y]['description'];
+            switch ($res[$y]['type']){
+                case 0:
+                    $finalRes[$y]['bgColor'] = 'table-warning';
+                    break;
+                case 1:
+                    $finalRes[$y]['bgColor'] = 'table-primary';
+                    break;
+                case 2:
+                    $finalRes[$y]['bgColor'] = 'table-danger';
+                    break;
+            }
+        }
+        return $finalRes;
+    }
+
+    public function getLegalContractsManageListCountRows($Subject,$CID,$SDate,$EDate,$type,$status){
+        $db = new DBi();
+        $ut = new Utility();
+        $w = array();
+        if(strlen(trim($Subject)) > 0){
+            $w[] = '`subjectContract` LIKE "%'.$Subject.'%" ';
+        }
+        if(strlen(trim($CID)) > 0){
+            $w[] = '`ContractID`="'.$CID.'" ';
+        }
+        if(strlen(trim($SDate)) > 0){
+            $SDate = $ut->jal_to_greg($SDate);
+            $w[] = '`BeginDateContract` >="'.$SDate.'" ';
+        }
+        if(strlen(trim($EDate)) > 0){
+            $EDate = $ut->jal_to_greg($EDate);
+            $w[] = '`EndDateContract` <="'.$EDate.'" ';
+        }
+        if(intval($type) >= 0){
+            $w[] = '`type`='.$type.' ';
+        }
+        $w[] = '`isEnable`='.$status.' ';
+
+        $query = "SELECT `uids` FROM `relatedunits` WHERE `RowID`=31";
+        $rsty = $db->ArrayQuery($query);
+        $uids = str_replace('1','0',$rsty[0]['uids']);
+        $uids = explode(',',$uids);
+        if (in_array($_SESSION['userid'],$uids)){
+            $w[] = '`unitID`=22 ';
+        }
+
+        $sql = "SELECT `RowID` FROM `legal_contracts`";
+        if(count($w) > 0){
+            $where = implode(" AND ",$w);
+            $sql .= " WHERE ".$where;
+        }
+        $res = $db->ArrayQuery($sql);
+        return count($res);
+    }
+
+    public function legalContractInfo($lcid){
+        $db = new DBi();
+        $ut = new Utility();
+        $sql = "SELECT * FROM `legal_contracts` WHERE `RowID`=".$lcid;
+        $res = $db->ArrayQuery($sql);
+        if(count($res) == 1){
+            $res = array("lcid"=>$lcid,"ContractID"=>$res[0]['ContractID'],"subjectContract"=>$res[0]['subjectContract'],
+                         "sideOne"=>$res[0]['sideOne'],"sideTwo"=>$res[0]['sideTwo'],"startDate"=>$ut->greg_to_jal($res[0]['BeginDateContract']),
+                         "endDate"=>$ut->greg_to_jal($res[0]['EndDateContract']),"phone"=>$res[0]['phone'],"mobile"=>$res[0]['mobile'],
+                         "Term_contract"=>$res[0]['Term_contract'],"Amount"=>number_format($res[0]['Amount']),"description"=>$res[0]['description'],
+                         "type"=>$res[0]['type'],"unitID"=>$res[0]['unitID'],"codeTafzili"=>$res[0]['codeTafzili']);
+            return $res;
+        }else{
+            return false;
+        }
+    }
+
+    public function createLegalContract($cid,$subject,$sideOne,$sideTwo,$codeTafzili,$Sdate,$Edate,$Phone,$Mobile,$amount,$desc,$type,$unit){
+        $acm = new acm();
+        if(!$acm->hasAccess('legalContractsManage')){
+            die("access denied");
+            exit;
+        }
+        $db = new DBi();
+        $ut = new Utility();
+        $Sdate = $ut->jal_to_greg($Sdate);
+        $Edate = $ut->jal_to_greg($Edate);
+        $sql = "INSERT INTO `legal_contracts` (`ContractID`,`subjectContract`,`sideOne`,`sideTwo`,`BeginDateContract`,`EndDateContract`,`phone`,`mobile`,`Amount`,`description`,`type`,`unitID`,`codeTafzili`) VALUES ('{$cid}','{$subject}','{$sideOne}','{$sideTwo}','{$Sdate}','{$Edate}','{$Phone}','{$Mobile}',{$amount},'{$desc}',{$type},{$unit},'{$codeTafzili}')";
+        $res = $db->Query($sql);
+        if (intval($res) > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function editLegalContract($lcid,$cid,$subject,$sideOne,$sideTwo,$codeTafzili,$Sdate,$Edate,$Phone,$Mobile,$amount,$desc,$type,$unit){
+        $acm = new acm();
+        if(!$acm->hasAccess('regulationsManage')){
+            die("access denied");
+            exit;
+        }
+        $db = new DBi();
+        $ut = new Utility();
+        $Sdate = $ut->jal_to_greg($Sdate);
+        $Edate = $ut->jal_to_greg($Edate);
+        $sql = "UPDATE `legal_contracts` SET `ContractID`='{$cid}',`subjectContract`='{$subject}',`sideOne`='{$sideOne}',`sideTwo`='{$sideTwo}',`BeginDateContract`='{$Sdate}',`EndDateContract`='{$Edate}',`phone`='{$Phone}',`mobile`='{$Mobile}',`Amount`={$amount},`description`='{$desc}',`type`={$type},`unitID`={$unit},`codeTafzili`='{$codeTafzili}' WHERE `RowID`={$lcid}";
+        $db->Query($sql);
+        $res = $db->AffectedRows();
+        $res = (($res == -1 || $res == 0) ? 0 : 1);
+        if (intval($res)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function deleteLegalContract($lcid){
+        $acm = new acm();
+        if(!$acm->hasAccess('legalContractsManage')){
+            die("access denied");
+            exit;
+        }
+        $db = new DBi();
+        $sql = "UPDATE `legal_contracts` SET `isEnable`=0 WHERE `RowID`=".$lcid;
+        $db->Query($sql);
+        $res = $db->AffectedRows();
+        $res = (($res == -1 || $res == 0) ? 0 : 1);
+        if($res){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function attachedLegalContractFileHtm($lcid){
+        $db = new DBi();
+        $sql = "SELECT `RowID`,`fileName`,`fileInfo` FROM `legal_contracts_attachment` WHERE `lcid`={$lcid}";
+        $res = $db->ArrayQuery($sql);
+        $cnt = count($res);
+        $iterator = 0;
+        $htm = '';
+        $htm .= '<table class="table table-bordered table-hover table-sm" id="attachmentFileLegalContract-tableID">';
+        $htm .= '<thead>';
+        $htm .= '<tr class="bg-info">';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 5%;">ردیف</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 55%;">نام فایل</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 20%;">لینک دانلود</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 20%;">حذف فایل</td>';
+        $htm .= '</tr>';
+        $htm .= '</thead>';
+        $htm .= '<tbody>';
+        for ($i=0;$i<$cnt;$i++){
+            $iterator++;
+            $link = ADDR.'documents/'.$res[$i]['fileName'];
+
+            $htm .= '<tr class="table-secondary">';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;">'.$iterator.'</td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;">'.$res[$i]['fileInfo'].'</td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;"><a class="btn btn-info" href="'.$link.'" target="_blank"><i class="fas fa-download"></i></a></td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;"><button class="btn btn-danger" onclick="deleteAttachLegalContractFile('.$res[$i]['RowID'].')" ><i class="fas fa-trash"></i></button></td>';
+            $htm .= '</tr>';
+        }
+        $htm .= '</tbody>';
+        $htm .= '</table>';
+        return $htm;
+    }
+
+    public function attachFileToLegalContract($lcid,$info,$files){
+        $db = new DBi();
+        $SFile = array();
+        $allowedTypes = ['png','jpg','jpeg','pdf','xlsx','docx','PNG','JPG','JPEG','PDF','XLSX','DOCX'];
+        if (isset($files) && !empty($files)) {
+            $no_files = count($files['name']);
+            for ($i = 0; $i < $no_files; $i++) {
+                $filepath = $files["tmp_name"][$i];
+                if ($files["error"][$i] > 0) {  // اگر یک فایل ارور داشت
+                    return -1;
+                }
+                if (filesize($filepath) === 0) {  // اگر سایز یک فایل صفر بود
+                    return -2;
+                }
+                $format = substr($files['name'][$i], strpos($files['name'][$i], ".") + 1);
+                if(!in_array($format, $allowedTypes)) {  // اگر پسوند فایل نادرست بود
+                    return -3;
+                }
+                $SFile[] = "LegalCnt" . rand(0, time()).'.'.$format;
+            } // for()
+        } //  if (isset($files) && !empty($files))
+
+        $cnt = count($SFile);
+        for ($i=0;$i<$cnt;$i++) {
+            $upload = move_uploaded_file($files["tmp_name"][$i],'../documents/'.$SFile[$i]);
+            $sql4 = "INSERT INTO `legal_contracts_attachment` (`lcid`,`fileName`,`fileInfo`) VALUES ({$lcid},'{$SFile[$i]}','{$info}')";
+            $db->Query($sql4);
+        }
+        return true;
+    }
+
+    public function deleteAttachLegalContractFile($fid){
+        $db = new DBi();
+        $sql = "SELECT `fileName` FROM `legal_contracts_attachment` WHERE `RowID`={$fid}";
+        $res = $db->ArrayQuery($sql);
+        $file_to_delete = str_replace('\\', '/', dirname(__DIR__)) . '/documents/' . $res[0]['fileName'];
+        $result = unlink($file_to_delete);
+        if ($result) {
+            $query = "DELETE FROM `legal_contracts_attachment` WHERE `RowID`={$fid}";
+            $db->Query($query);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function attachmentFileLegalContractsHtm($lcid){
+        $db = new DBi();
+        $sql = "SELECT `fileName`,`fileInfo` FROM `legal_contracts_attachment` WHERE `lcid`={$lcid}";
+        $res = $db->ArrayQuery($sql);
+        $cnt = count($res);
+        $iterator = 0;
+        $htm = '';
+        $htm .= '<table class="table table-bordered table-hover table-sm" id="attachmentFileLegalContract1-tableID">';
+        $htm .= '<thead>';
+        $htm .= '<tr class="bg-info">';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 10%;">ردیف</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 70%;">نام فایل</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 20%;">لینک دانلود</td>';
+        $htm .= '</tr>';
+        $htm .= '</thead>';
+        $htm .= '<tbody>';
+        for ($i=0;$i<$cnt;$i++){
+            $iterator++;
+            $link = ADDR.'documents/'.$res[$i]['fileName'];
+            $htm .= '<tr class="table-secondary">';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;">'.$iterator.'</td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;">'.$res[$i]['fileInfo'].'</td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;"><a class="btn btn-info" href="'.$link.'" target="_blank"><i class="fas fa-download"></i></a></td>';
+            $htm .= '</tr>';
+        }
+        $htm .= '</tbody>';
+        $htm .= '</table>';
+        return $htm;
+    }
+
+    public function getSideTwoCodeTafzili($cfor){
+        $db = new DBi();
+        $sql = "SELECT `code` FROM `account` WHERE `Name`='{$cfor}'";
+        $res = $db->ArrayQuery($sql);
+        if(count($res) == 1){
+            return $res;
+        }else{
+            return false;
+        }
+    }
+    
+    public function editWarranty($cid,$w_title,$w_acc_type,$w_doc_owner,$w_doc_owner_nat_id,$w_acc,$w_doc_info,$w_access_id,$w_start_date,$w_end_date,$desc,$warranty_cost){
+        $acm = new acm();
+        if(!$acm->hasAccess('WarrantyManage')){
+            die("access denied");
+            exit;
+        }
+        $db = new DBi();
+        $ut = new Utility();
+        $SDate = $ut->jal_to_greg($w_start_date);
+        $EDate = $ut->jal_to_greg($w_end_date);
+        $sql = "UPDATE `sale_warranty` SET `warranty_title`='{$w_title}',`warranty_type`='{$w_acc_type}',`account_id`='{$w_acc}',`doc_owner_name`='{$w_doc_owner}',`doc_owner_nat_id`='{$w_doc_owner_nat_id}',`warranty_cost`=$warranty_cost,`doc_other_info`='{$w_doc_info}',`access_id`='{$w_access_id}',`start_date`='{$SDate}',`end_date`='{$EDate}',`desc`='{$desc}' where RowID={$cid} ";
+        $ut->fileRecorder($sql);
+        $db->Query($sql);
+        $res = $db->AffectedRows();
+        $res = (($res == -1 || $res == 0) ? 0 : 1);
+        if (intval($res)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function createWarranty($w_title,$w_acc_type,$w_doc_owner,$w_doc_owner_nat_id,$w_account_id,$w_doc_info,$w_access_id,$w_start_date,$w_end_date,$desc,$warranty_cost){
+        $acm = new acm();
+        if(!$acm->hasAccess('WarrantyManage')){
+            die("access denied");
+            exit;
+        }
+        $db = new DBi();
+        $ut = new Utility();
+        $SDate = $ut->jal_to_greg($w_start_date);
+        $EDate = $ut->jal_to_greg($w_end_date);
+       $ut->fileRecorder($w_account_id);
+        $sql = "INSERT INTO `sale_warranty` (`warranty_title`,`warranty_type`,`account_id`,`doc_owner_name`,`doc_owner_nat_id`,`warranty_cost`,`doc_other_info`,`access_id`,`start_date`,`end_date`,`desc`) 
+                                    VALUES ('{$w_title}','{$w_acc_type}','{$w_account_id}','{$w_doc_owner}','{$w_doc_owner_nat_id}','{$warranty_cost}','{$w_doc_info}','{$w_access_id}','{$SDate}','{$EDate}','{$desc}')";
+        $ut->fileRecorder($sql);
+        $res = $db->Query($sql);
+        if (intval($res) > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function get_account_info($account_id){
+        $db=new DBi();
+        $sql="SELECT `code` ,`Name`  FROM `account` where `RowID`={$account_id}";
+        $res=$db->ArrayQuery($sql);
+        return $res[0];
+    }
+
+    public function getWarrantyManageList($Name,$Code,$SDate,$EDate,$status='',$type,$page=1){
+        $acm = new acm();
+        if(!$acm->hasAccess('WarrantyManage')){
+            die("access denied");
+            exit;
+        }
+        $db = new DBi();
+        $ut = new Utility();
+        $flag = ($acm->hasAccess('editCreateNewWarranty') || $acm->hasAccess('attachFileToWarranty') ? true : false);
+        $numRows = LISTCNT;
+        $start = ($page-1)*$numRows;
+        $w = array();
+        if(strlen(trim($Name)) > 0){
+            $w[] = '`warranty_title` LIKE "%'.$Name.'%" ';
+        }
+        // if(strlen(trim($Code)) > 0){
+        //     $w[] = '`Code`="'.$Code.'" ';
+        // }
+        if(strlen(trim($SDate)) > 0){
+            $SDate = $ut->jal_to_greg($SDate);
+            $w[] = '`start_date` >="'.$SDate.'" ';
+        }
+        if(strlen(trim($EDate)) > 0){
+            $EDate = $ut->jal_to_greg($EDate);
+            $w[] = '`end_date` <="'.$EDate.'" ';
+        }
+        if(intval($type) > 0){
+            $w[] = '`warranty_type`='.$type.' ';
+        }
+        if(!empty($status)){
+             $w[] = '`status`='.$status.' ';
+        }
+        else{
+            $w[] = '`status`!=0';
+        }
+       
+
+        $sql = "SELECT * FROM `sale_warranty`";
+        if(count($w) > 0){
+            $where = implode(" AND ",$w);
+            $sql .= " WHERE ".$where;
+        }
+        $sql .= " ORDER BY `RowID` DESC LIMIT $start,".$numRows;
+    
+        $res = $db->ArrayQuery($sql);
+        $listCount = count($res);
+        $finalRes = array();
+        for($y=0;$y<$listCount;$y++){
+            $users = array();
+            $access = explode(',',$res[$y]['access_id']);
+            if (!$flag) {
+                if (!in_array($_SESSION['userid'], $access)) {
+                    continue;
+                }
+            }
+            $cnt = count($access);
+            for ($i=0;$i<$cnt;$i++){
+                $query = "SELECT `fname`,`lname` FROM `users` WHERE `RowID`={$access[$i]}";
+                $rst = $db->ArrayQuery($query);
+                $users[] = $rst[0]['fname'].' '.$rst[0]['lname'];
+            }
+
+            $account_info=$this->get_account_info($res[$y]['account_id']);
+            $finalRes[$y]['users'] = implode(' , ',$users);
+            $finalRes[$y]['RowID'] = $res[$y]['RowID'];
+            switch ($res[$y]['warranty_type']){
+                case 1:
+                    $finalRes[$y]['type'] = 'چک';
+                    break;
+                case 2:
+                    $finalRes[$y]['type'] = 'سفته';
+                    break;
+                case 3:
+                    $finalRes[$y]['type'] = ' سایر تضامین';
+                    break;
+            }
+            $finalRes[$y]['Name'] = $res[$y]['warranty_title'];
+            switch($res[$y]['status']){
+                case 10 :
+                        $bgColor="table-secodary";
+                    break;
+                case 1 :
+                    $bgColor="table-success";
+                    break;
+                case 2 :
+                    $bgColor="table-warning";
+                    break;
+                case -1 :
+                    $bgColor="table-danger";
+                    break;
+            }
+            $finalRes[$y]['bgColor'] = $bgColor;
+            $finalRes[$y]['warranty_cost'] = number_format($res[$y]['warranty_cost']);
+            $finalRes[$y]['code_tafzili'] = $account_info['code'];
+            $finalRes[$y]['account_name'] = $account_info['Name'];
+            $finalRes[$y]['startDate'] = $ut->greg_to_jal($res[$y]['start_date']);
+            $finalRes[$y]['endDate'] = $ut->greg_to_jal($res[$y]['end_date']);
+            $finalRes[$y]['description'] = $res[$y]['desc'];
+        }
+        $finalRes = array_values($finalRes);
+        return $finalRes;
+    }
+
+    public function getWarrantyManageListCountRows($Name,$Code,$SDate,$EDate,$status,$type){
+        $db = new DBi();
+        $acm = new acm();
+        $ut = new Utility();
+        $flag = ($acm->hasAccess('editCreateNewWarranty') || $acm->hasAccess('attachFileToWarranty') ? true : false);
+        $w = array();
+        if(strlen(trim($Name)) > 0){
+            $w[] = '`Name` LIKE "%'.$warranty_title.'%" ';
+        }
+        // if(strlen(trim($Code)) > 0){
+        //     $w[] = '`Code`="'.$Code.'" ';
+        // }
+        if(strlen(trim($SDate)) > 0){
+            $SDate = $ut->jal_to_greg($SDate);
+            $w[] = '`start_date` >="'.$SDate.'" ';
+        }
+        if(strlen(trim($EDate)) > 0){
+            $EDate = $ut->jal_to_greg($EDate);
+            $w[] = '`end_date` <="'.$EDate.'" ';
+        }
+        if(intval($type) > 0){
+            $w[] = '`warranty_type`='.$type.' ';
+        }
+        $w[] = '`status`='.$status.' ';
+
+        $sql = "SELECT `RowID`,`access_id` FROM `sale_warranty`";
+        if(count($w) > 0){
+            $where = implode(" AND ",$w);
+            $sql .= " WHERE ".$where;
+        }
+        $res = $db->ArrayQuery($sql);
+        $listCount = count($res);
+        $finalRes = array();
+        for($y=0;$y<$listCount;$y++){
+            $access = explode(',',$res[$y]['access_id']);
+            if (!$flag) {
+                if (!in_array($_SESSION['userid'], $access)) {
+                    continue;
+                }
+            }
+            $finalRes[$y]['RowID'] = $res[$y]['RowID'];
+        }
+        $finalRes = array_values($finalRes);
+        return count($finalRes);
+    }
+
+    public function getOtherInfoWarrantyHtm($cid)
+    {
+        $db=new DBi();
+        $ut=new Utility();
+        $sql="SELECT * FROM `sale_warranty` where status !=0 AND RowID={$cid}";
+        $res=$db->ArrayQuery($sql);
+        $result_array=[
+        'warranty_title'=>"عنوان سند تضمین",
+        'warranty_type'=>"نوع سند تضمین",
+        'account_id'=>"نام طرف حساب",
+        'doc_owner_name'=>"نام صاحب سند",
+        'doc_owner_nat_id'=>"کد ملی صاحب سند",
+        'warranty_cost'=>"مبلغ تضمین",
+        'doc_other_info'=>"سایر اطلاعات سند",
+        'start_date'=>'تاریخ شروع',
+        'end_date'=>'تاریخ اتمام ',
+        'desc'=>'توضیحات ',
+        'status'=>'وضعیت سند'];
+        $html='<table class="table table-borderd">';
+        foreach($result_array as $key=>$value){
+            $result=$res[0][$key];  
+            switch($key){
+                case "warranty_type":
+                    $ut->fileRecorder($res[0][$key]);
+                    if($res[0][$key]==1){
+                        $result='چک'; 
+                    }
+                    if($res[0][$key]==2){
+                        $result='سفته'; 
+                    }
+                    if($res[0][$key]==3){
+                        $result='سایر'; 
+                    }
+                    
+                    break;
+                case "account_id":
+                    $result=$this->get_account_info($res[0][$key]);
+                    $result=$result['Name'];
+                    break;
+                case "status":
+                    if($res[0][$key]==1){
+                        $result='فعال'; 
+                        $class="table-success";
+                    }
+                    if($res[0][$key]==2){
+                        $result='آرشیو'; 
+                        $class="table-warning";
+                    }
+                    if($res[0][$key]==3){
+                        $result='اتمام دوره و عودت سند'; 
+                        $class="table-danger";
+                    }
+                    if($res[0][$key]==10){
+                        $result='درحال بررسی '; 
+                        $class="table-secondary";
+                    }
+                    break;
+                case "start_date":
+                        $result=$ut->greg_to_jal($res[0][$key]);
+                    break;
+                case "end_date":
+                        $result=$ut->greg_to_jal($res[0][$key]);
+                    break;
+            }
+            $html.="<tr class='".$class."'><td>".$value."</td><td>".$result."</td></tr>";
+        }
+        $html.="</table>";
+        return $html;
+
+    }
+    public function circularsInfo($cid){
+        $db = new DBi();
+        $ut = new Utility();
+        $sql = "SELECT * FROM `circulars` WHERE `RowID`=".$cid;
+        $res = $db->ArrayQuery($sql);
+        if(count($res) == 1){
+            $res = array("cid"=>$cid,"Name"=>$res[0]['Name'],"Code"=>$res[0]['Code'],"accessID"=>$res[0]['accessID'],"startDate"=>$ut->greg_to_jal($res[0]['startDate']),"endDate"=>$ut->greg_to_jal($res[0]['endDate']),"description"=>$res[0]['description'],"type"=>$res[0]['type']);
+            return $res;
+        }else{
+            return false;
+        }
+    }
+
+    public function getWarrantyInfo($cid){
+        $db = new DBi();
+        $ut = new Utility();
+        $sql = "SELECT * FROM `sale_warranty` WHERE `RowID`=".$cid;
+        $res = $db->ArrayQuery($sql);
+        if(count($res) == 1){
+            $res = array("cid"=>$cid,
+                        "warranty_title"=>$res[0]['warranty_title'],
+                        "warranty_type"=>$res[0]['warranty_type'],
+                        "account_id"=>$res[0]['account_id'],
+                        "doc_owner_name"=>$res[0]['doc_owner_name'],
+                        "doc_owner_nat_id"=>$res[0]['doc_owner_nat_id'],
+                        "warranty_cost"=>number_format($res[0]['warranty_cost']),
+                        "doc_other_info"=>$res[0]['doc_other_info'],
+                        "access_id"=>$res[0]['access_id'],
+                        "start_date"=>$ut->greg_to_jal($res[0]['start_date']),
+                        "end_date"=>$ut->greg_to_jal($res[0]['end_date']),
+                        "desc"=>$res[0]['desc']
+                    );
+            return $res;
+        }else{
+            return false;
+        }
+    }
+
+    public function attachedWarrantyFileHtm($cid){
+        $db = new DBi();
+        $sql = "SELECT `RowID`,`fileName`,`fileInfo` FROM `warranty_attachment` WHERE `cid`={$cid} AND `status`=1";
+        $res = $db->ArrayQuery($sql);
+        $cnt = count($res);
+        $iterator = 0;
+        $htm = '';
+        $htm .= '<table class="table table-bordered table-hover table-sm" id="attachmentFileWarranty-tableID">';
+        $htm .= '<thead>';
+        $htm .= '<tr class="bg-info">';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 5%;">ردیف</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 55%;">نام فایل</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 20%;">لینک دانلود</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 20%;">حذف فایل</td>';
+        $htm .= '</tr>';
+        $htm .= '</thead>';
+        $htm .= '<tbody>';
+        for ($i=0;$i<$cnt;$i++){
+            $iterator++;
+            $link = ADDR.'documents/'.$res[$i]['fileName'];
+
+            $htm .= '<tr class="table-secondary">';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;">'.$iterator.'</td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;">'.$res[$i]['fileInfo'].'</td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;"><a class="btn btn-info" href="'.$link.'" target="_blank"><i class="fas fa-download"></i></a></td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;"><button class="btn btn-danger" onclick="deleteAttachWarrantyFile('.$res[$i]['RowID'].')" ><i class="fas fa-trash"></i></button></td>';
+            $htm .= '</tr>';
+        }
+        $htm .= '</tbody>';
+        $htm .= '</table>';
+        return $htm;
+    }
+
+    // public function createCirculars($fname,$fcode,$SDate,$EDate,$desc,$accID,$type){
+    //     $acm = new acm();
+    //     if(!$acm->hasAccess('circularsManage')){
+    //         die("access denied");
+    //         exit;
+    //     }
+    //     $db = new DBi();
+    //     $ut = new Utility();
+    //     $SDate = $ut->jal_to_greg($SDate);
+    //     $EDate = $ut->jal_to_greg($EDate);
+    //     $sql = "INSERT INTO `circulars` (`type`,`Name`,`Code`,`accessID`,`startDate`,`endDate`,`description`) VALUES ({$type},'{$fname}','{$fcode}','{$accID}','{$SDate}','{$EDate}','{$desc}')";
+    //     $res = $db->Query($sql);
+    //     if (intval($res) > 0){
+    //         return true;
+    //     }else{
+    //         return false;
+    //     }
+    // }
+    public function attachFileToWarranty($cid,$info,$files){
+        $db = new DBi();
+        $SFile = array();
+        $ut=new Utility();
+        $allowedTypes = ['png','jpg','jpeg','pdf','xlsx','docx','rar','zip'];
+        if (isset($files) && !empty($files)) {
+            $no_files = count($files['name']);
+            for ($i = 0; $i < $no_files; $i++) {
+                $filepath = $files["tmp_name"][$i];
+                if ($files["error"][$i] > 0) {  // اگر یک فایل ارور داشت
+                    return -1;
+                }
+                if (filesize($filepath) === 0) {  // اگر سایز یک فایل صفر بود
+                    return -2;
+                }
+                if (filesize($filepath) > 5242880) {  // اگر سایز یک فایل بیشتر از 5 مگ بود بود
+                    return -4;
+                }
+               
+               // $format = substr($files['name'][$i], strpos($files['name'][$i], ".") + 1);
+                $format  = pathinfo($files['name'][$i], PATHINFO_EXTENSION);
+                if(!in_array(strtolower($format), $allowedTypes)) {  // اگر پسوند فایل نادرست بود
+                    return -3;
+                }
+                $SFile[] = "sale_warranty" . rand(0, time()).'.'.$format;
+            } // for()
+        } //  if (isset($files) && !empty($files))
+        $directory="../documents";
+       
+        $cnt = count($SFile);
+        if (!file_exists($directory)) {
+            
+            mkdir($directory, 0777, true);
+            
+            $ut->fileRecorder('test'."::".var_dump($red));
+        }
+        for ($i=0;$i<$cnt;$i++) {
+            $upload = move_uploaded_file($files["tmp_name"][$i],$directory.'/'.$SFile[$i]);
+            $sql4 = "INSERT INTO `warranty_attachment` (`cid`,`fileName`,`fileInfo`) VALUES ({$cid},'{$SFile[$i]}','{$info}')";
+            $db->Query($sql4);
+        }
+        return true;
+    }
+
+    public function deleteAttachWarrantyFile($fid){
+        $db = new DBi();
+        $ut=new Utility();
+        $sql = "SELECT `fileName` FROM `warranty_attachment` WHERE `RowID`={$fid} AND  `status`=1";
+        $res = $db->ArrayQuery($sql);
+        $del_dir=str_replace('\\', '/', dirname(__DIR__)) . '/documents/delete_warranty_files';
+        if(!file_exists($del_dir)){
+            mkdir($del_dir,0777,true);
+        }
+        $file_to_delete = str_replace('\\', '/', dirname(__DIR__)) . '/documents/' . $res[0]['fileName'];
+       // $result = unlink($file_to_delete);
+       $result=rename($file_to_delete,$del_dir."/".$res[0]['fileName']);
+        
+        if ($result) {
+            $ut->fileRecorder('delete_test2');
+            $query = "update `warranty_attachment` set status=0  WHERE `RowID`={$fid}";
+            $db->Query($query);
+            return true;
+        }else{
+            
+            return false;
+        }
+    }
+
+    public function attachmentFileWarrantyHtm($cid){
+        $db = new DBi();
+        $sql = "SELECT `fileName`,`fileInfo` FROM `warranty_attachment` WHERE `cid`={$cid} AND `status`=1";
+        $res = $db->ArrayQuery($sql);
+        $cnt = count($res);
+        $iterator = 0;
+        $htm = '';
+        $htm .= '<table class="table table-bordered table-hover table-sm" id="attachmentFileWarranty-tableID">';
+        $htm .= '<thead>';
+        $htm .= '<tr class="bg-info">';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 10%;">ردیف</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 70%;">نام فایل</td>';
+        $htm .= '<td style="text-align: center;color: #ffc107;font-family: dubai-Bold;width: 20%;">لینک دانلود</td>';
+        $htm .= '</tr>';
+        $htm .= '</thead>';
+        $htm .= '<tbody>';
+        for ($i=0;$i<$cnt;$i++){
+            $iterator++;
+            $link = ADDR.'documents/'.$res[$i]['fileName'];
+            $htm .= '<tr class="table-secondary">';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;">'.$iterator.'</td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;">'.$res[$i]['fileInfo'].'</td>';
+            $htm .= '<td style="text-align: center;font-family: dubai-Regular;padding: 10px;"><a class="btn btn-info" href="'.$link.'" target="_blank"><i class="fas fa-download"></i></a></td>';
+            $htm .= '</tr>';
+        }
+        $htm .= '</tbody>';
+        $htm .= '</table>';
+        return $htm;
+   }
+
+   public function deleteWarranty($cid,$comment){
+    $acm = new acm();
+    if(!$acm->hasAccess('WarrantyManage')){
+        die("access denied");
+        exit;
+    }
+    $db = new DBi();
+    $current_date=date('Y-m-d H:i:s');
+    $sql = "UPDATE `sale_warranty` SET `status`=0 WHERE `RowID`=".$cid;
+    $db->Query($sql);
+    $res = $db->AffectedRows();
+    $res = (($res == -1 || $res == 0) ? 0 : 1);
+    if($res){
+        $ins_meta_query="INSERT INTO sale_warranty_meta (`w_id`,`key`,`value`,`desc`)VALUES(
+            '{$cid}','delete_reason','{$comment}','علت حذف'),
+        ('{$cid}','user_deleted','{$_SESSION['userid']}','کاربر حذف کننده'),
+        ('{$cid}','delete_date_time','{$current_date}','تاریخ و زمان حذف')";
+        $res1=$db->Query($ins_meta_query);
+    
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function EndWarranty($cid,$comment){
+    $acm = new acm();
+    if(!$acm->hasAccess('WarrantyManage')){
+        die("access denied");
+        exit;
+    }
+    $db = new DBi();
+    $current_date=date('Y-m-d H:i:s');
+    $sql = "UPDATE `sale_warranty` SET `status`=3 WHERE `RowID`=".$cid;
+    $db->Query($sql);
+    $res = $db->AffectedRows();
+    $res = (($res == -1 || $res == 0) ? 0 : 1);
+    if($res){
+        $ins_meta_query="INSERT INTO sale_warranty_meta (`w_id`,`key`,`value`,`desc`)VALUES(
+            '{$cid}','end_comment','{$comment}','توضیحات علت قطع همکاری '),
+        ('{$cid}','user_end_warranty','{$_SESSION['userid']}','کاربر  ثبت کننده'),
+        ('{$cid}','end_warranty_date_time','{$current_date}','تاریخ و زمان ثبت')";
+        $res1=$db->Query($ins_meta_query);
+    
+        return true;
+    }else{
+        return false;
+    }
+}
+    public function get_end_date_warranty($cid){
+        $acm = new acm();
+        $ut=new Utility();
+        if(!$acm->hasAccess('WarrantyManage')){
+            die("access denied");
+            exit;
+        }
+        $db = new DBi();
+        $sql = "SELECT  `end_date` FROM  `sale_warranty` WHERE `status`=1  AND `RowID`=".$cid;
+
+        $res = $db->ArrayQuery($sql);
+    
+        if($res){
+            $end_date= $ut->greg_to_jal($res[0]['end_date']);
+            return $end_date;
+        }else{
+            return false;
+        }
+    }
+
+}
